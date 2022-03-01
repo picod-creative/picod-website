@@ -1,5 +1,5 @@
-import type { NextPageWithLayout } from "../@types";
-import Layout from "../components/common/Layout";
+import type { NextPageWithLayout } from "../src/@types";
+import Layout from "../src/components/common/Layout";
 
 const Home: NextPageWithLayout = () => {
   return <p>PICOD</p>;
