@@ -5,10 +5,18 @@ import Navbar from "./Navbar";
 
 export interface LayoutProps {
   wrapInsideMain?: boolean;
+  mainClassName?: string;
+  mainStyle?: React.CSSProperties;
   title?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ title, wrapInsideMain, children }) => {
+const Layout: React.FC<LayoutProps> = ({
+  title,
+  wrapInsideMain = true,
+  children,
+  mainStyle,
+  mainClassName,
+}) => {
   return (
     <>
       <Head>
@@ -18,7 +26,13 @@ const Layout: React.FC<LayoutProps> = ({ title, wrapInsideMain, children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Navbar />
-      {wrapInsideMain ? <main>{children}</main> : children}
+      {wrapInsideMain ? (
+        <main className={mainClassName} style={mainStyle}>
+          {children}
+        </main>
+      ) : (
+        children
+      )}
       <Footer />
     </>
   );
