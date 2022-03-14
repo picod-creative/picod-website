@@ -415,7 +415,6 @@ const Background: FC = () => (
 const Hero: FC = () => (
   <Box
     sx={{
-      width: '100vw',
       height: '100vh',
       overflow: 'hidden',
       position: 'relative',

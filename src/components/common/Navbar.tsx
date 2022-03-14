@@ -25,12 +25,12 @@ const Navbar: FC = () => {
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center',
-        py: 3.5,
-        px: 4.5,
+        py: 5,
+        px: 8,
         fontFamily: 'Roboto',
         [theme.breakpoints.down('md')]: {
-          py: 1,
-          px: 0,
+          py: 2,
+          px: 3,
         },
       }}
     >
@@ -40,12 +40,12 @@ const Navbar: FC = () => {
         </MuiLink>
       </Link>
       <Hidden mdUp implementation="css">
-        <IconButton sx={{ mr: 2, p: 2 }}>
+        <IconButton sx={{ p: 2 }}>
           <MenuIcon />
         </IconButton>
       </Hidden>
       <Hidden mdDown implementation="css">
-        <Stack direction="row" alignItems="center" spacing={4} sx={{ pr: 4 }}>
+        <Stack direction="row" alignItems="center" spacing={4}>
           <Link href="/about" passHref>
             <MuiLink underline="none" color="inherit">
               A propos
