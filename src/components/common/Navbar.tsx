@@ -62,7 +62,7 @@ const Navbar: FC = () => {
                 px: 4,
                 py: 1,
               }}
-              component={MuiLink}
+              component="a"
             >
               Contact
             </Button>

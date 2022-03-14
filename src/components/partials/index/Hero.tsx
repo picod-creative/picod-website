@@ -2,6 +2,7 @@ import { Box, Button, Hidden, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import Picod from '../../icons/Picod';
 import MouseIcon from '../../icons/Mouse';
+import Link from 'next/link';
 
 const Background: FC = () => (
   <svg
@@ -441,23 +442,26 @@ const Hero: FC = () => (
       <Typography variant="body2" color="GrayText">
         caroussel blabla
       </Typography>
-      <Button
-        variant="contained"
-        color="inherit"
-        size="large"
-        sx={{
-          mt: 8,
-          fontFamily: 'Roboto',
-          textTransform: 'none',
-          color: '#303030',
-          borderRadius: 100,
-          fontWeight: 400,
-          px: 6,
-          py: 1.5,
-        }}
-      >
-        Contact
-      </Button>
+      <Link href="/contact" passHref>
+        <Button
+          variant="contained"
+          component="a"
+          color="inherit"
+          size="large"
+          sx={{
+            mt: 8,
+            fontFamily: 'Roboto',
+            textTransform: 'none',
+            color: '#303030',
+            borderRadius: 100,
+            fontWeight: 400,
+            px: 6,
+            py: 1.5,
+          }}
+        >
+          Contact
+        </Button>
+      </Link>
     </Stack>
     <Hidden mdDown>
       <MouseIcon
