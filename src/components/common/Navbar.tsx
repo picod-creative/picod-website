@@ -27,6 +27,7 @@ const Navbar: FC = () => {
         alignItems: 'center',
         py: 3.5,
         px: 4.5,
+        fontFamily: 'Roboto',
         [theme.breakpoints.down('md')]: {
           py: 1,
           px: 0,
@@ -58,6 +59,8 @@ const Navbar: FC = () => {
                 borderRadius: 100,
                 textTransform: 'none',
                 color: '#666666',
+                px: 4,
+                py: 1,
               }}
               component={MuiLink}
             >
