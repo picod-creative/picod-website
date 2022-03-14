@@ -1,12 +1,21 @@
-import type { NextPageWithLayout } from "../src/@types";
-import Layout from "../src/components/common/Layout";
+import type { NextPageWithLayout } from '../src/@types';
+import Layout from '../src/components/common/Layout';
+import Hero from '../src/components/partials/index/Hero';
 
 const Home: NextPageWithLayout = () => {
-  return <p>PICOD</p>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 
 Home.getLayout = (page) => {
-  return <Layout title="Picod creative">{page}</Layout>;
+  return (
+    <Layout wrapInsideMain={false} title="Picod creative">
+      {page}
+    </Layout>
+  );
 };
 
 export default Home;
