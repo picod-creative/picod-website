@@ -41,7 +41,7 @@ const Navbar: FC = () => {
         </MuiLink>
       </Link>
       <Hidden mdUp implementation="css">
-        <IconButton sx={{ p: 2 }}>
+        <IconButton sx={{ p: 2, mr: -2 }}>
           <MenuIcon />
         </IconButton>
       </Hidden>
