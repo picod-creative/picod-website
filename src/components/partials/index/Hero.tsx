@@ -447,6 +447,7 @@ const Hero: FC = () => {
           height: '100%',
           p: 8,
           alignItems: 'flex-start',
+          transition: 'padding .25s ease-out',
           [theme.breakpoints.down('md')]: {
             px: 3,
             pb: 5,

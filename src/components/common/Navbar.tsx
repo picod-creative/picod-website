@@ -28,6 +28,7 @@ const Navbar: FC = () => {
         py: 5,
         px: 8,
         fontFamily: 'Roboto',
+        transition: 'padding .25s ease-out',
         [theme.breakpoints.down('md')]: {
           py: 2,
           px: 3,
