@@ -12,4 +12,10 @@ const theme = createTheme({
   },
 });
 
+theme.typography.h4 = {
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1.5rem',
+  },
+};
+
 export default theme;

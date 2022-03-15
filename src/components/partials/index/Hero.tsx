@@ -1,4 +1,11 @@
-import { Box, Button, Hidden, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Hidden,
+  Stack,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import { FC } from 'react';
 import Picod from '../../icons/Picod';
 import MouseIcon from '../../icons/Mouse';
@@ -412,68 +419,86 @@ const Background: FC = () => (
   </svg>
 );
 
-const Hero: FC = () => (
-  <Box
-    sx={{
-      height: '100vh',
-      overflow: 'hidden',
-      position: 'relative',
-      zIndex: 1,
-      '& > .hero-background': {
-        position: 'absolute',
-        top: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: -1,
-      },
-    }}
-  >
-    <Background />
-    <Stack
-      direction="column"
-      justifyContent="flex-end"
-      sx={{ width: '100%', height: '100%', p: 8, alignItems: 'flex-start' }}
-    >
-      <Picod variant="logo-monochrome" />
-      <Typography variant="h4" component="p" sx={{ fontWeight: 300 }}>
-        Solution de design
-      </Typography>
-      <Typography variant="body2" color="GrayText">
-        caroussel blabla
-      </Typography>
-      <Link href="/contact" passHref>
-        <Button
-          variant="contained"
-          component="a"
-          color="inherit"
-          size="large"
-          sx={{
-            mt: 8,
-            fontFamily: 'Roboto',
-            textTransform: 'none',
-            color: '#303030',
-            borderRadius: 100,
-            fontWeight: 400,
-            px: 6,
-            py: 1.5,
-          }}
-        >
-          Contact
-        </Button>
-      </Link>
-    </Stack>
-    <Hidden mdDown>
-      <MouseIcon
-        sx={{
-          fontSize: '2.5rem',
+const Hero: FC = () => {
+  const theme = useTheme();
+
+  return (
+    <Box
+      sx={{
+        height: '100vh',
+        overflow: 'hidden',
+        position: 'relative',
+        zIndex: 1,
+        '& > .hero-background': {
           position: 'absolute',
-          bottom: (theme) => theme.spacing(4),
+          top: 0,
           left: '50%',
           transform: 'translateX(-50%)',
+          zIndex: -1,
+        },
+      }}
+    >
+      <Background />
+      <Stack
+        direction="column"
+        justifyContent="flex-end"
+        sx={{
+          width: '100%',
+          height: '100%',
+          p: 8,
+          alignItems: 'flex-start',
+          [theme.breakpoints.down('md')]: {
+            px: 3,
+            pb: 5,
+          },
         }}
-      />
-    </Hidden>
-  </Box>
-);
+      >
+        <Picod
+          variant="logo-monochrome"
+          sx={{ [theme.breakpoints.down('md')]: { fontSize: 56 } }}
+        />
+        <Typography variant="h4" component="p" sx={{ fontWeight: 300 }}>
+          Solution de design
+        </Typography>
+        <Typography variant="body2" color="GrayText">
+          caroussel blabla
+        </Typography>
+        <Hidden mdDown>
+          <Link href="/contact" passHref>
+            <Button
+              variant="contained"
+              component="a"
+              color="inherit"
+              size="large"
+              sx={{
+                mt: 8,
+                fontFamily: 'Roboto',
+                textTransform: 'none',
+                color: '#303030',
+                borderRadius: 100,
+                fontWeight: 400,
+                px: 6,
+                py: 1.5,
+              }}
+            >
+              Contact
+            </Button>
+          </Link>
+        </Hidden>
+      </Stack>
+      <Hidden mdDown>
+        <MouseIcon
+          sx={{
+            fontSize: '2.5rem',
+            position: 'absolute',
+            bottom: (theme) => theme.spacing(4),
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }}
+        />
+      </Hidden>
+    </Box>
+  );
+};
 
 export default Hero;
