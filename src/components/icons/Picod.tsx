@@ -5,8 +5,8 @@ export interface PicodIconProps extends SvgIconProps {
   variant: 'icon' | 'logo-monochrome' | 'logo-color';
 }
 
-const Picod: FC<PicodIconProps> = ({ variant, ...props }) => {
-  return variant === 'icon' ? (
+const Picod: FC<PicodIconProps> = ({ variant, ...props }) =>
+  variant === 'icon' ? (
     <SvgIcon
       {...props}
       viewBox="0 0 30 46"
@@ -206,6 +206,5 @@ const Picod: FC<PicodIconProps> = ({ variant, ...props }) => {
       </defs>
     </SvgIcon>
   ) : null;
-};
 
 export default Picod;
