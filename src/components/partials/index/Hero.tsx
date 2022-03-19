@@ -3,11 +3,13 @@ import {
   Button,
   Hidden,
   Stack,
+  Theme,
   Typography,
+  useMediaQuery,
   useTheme,
 } from '@mui/material';
 import { FC } from 'react';
-import Picod from '../../icons/Picod';
+import PicodIcon from '../../icons/Picod';
 import MouseIcon from '../../icons/Mouse';
 import Link from 'next/link';
 
@@ -421,6 +423,7 @@ const Background: FC = () => (
 
 const Hero: FC = () => {
   const theme = useTheme();
+  const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
   return (
     <Box
@@ -454,8 +457,8 @@ const Hero: FC = () => {
           },
         }}
       >
-        <Picod
-          variant="logo-monochrome"
+        <PicodIcon
+          variant={mobile ? 'logo-color' : 'logo-monochrome'}
           sx={{ [theme.breakpoints.down('md')]: { fontSize: 56 } }}
         />
         <Typography variant="h4" component="p" sx={{ fontWeight: 300 }}>
