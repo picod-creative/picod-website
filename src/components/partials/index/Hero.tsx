@@ -432,6 +432,9 @@ const Hero: FC = () => {
         overflow: 'hidden',
         position: 'relative',
         zIndex: 1,
+        [theme.breakpoints.up('md')]: {
+          minHeight: 929,
+        },
         '& > .hero-background': {
           position: 'absolute',
           top: 0,
