@@ -22,7 +22,14 @@ const MessageButton: FC<IconButtonProps> = (props) => {
         },
       }}
     >
-      <MessageIcon />
+      <MessageIcon
+        sx={{
+          fontSize: '3rem',
+          [theme.breakpoints.down('md')]: {
+            fontSize: '2.5rem',
+          },
+        }}
+      />
     </IconButton>
   );
 };
