@@ -17,7 +17,7 @@ interface MyDocumentProps extends DocumentInitialProps {
 export default class MyDocument extends Document<MyDocumentProps> {
   render() {
     return (
-      <Html lang="fr">
+      <Html lang={this.props.locale || 'fr'}>
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
