@@ -462,7 +462,10 @@ const Hero: FC = () => {
       >
         <PicodIcon
           variant={mobile ? 'logo-color' : 'logo-monochrome'}
-          sx={{ [theme.breakpoints.down('md')]: { fontSize: 56 } }}
+          sx={{
+            mb: 5.75,
+            [theme.breakpoints.down('md')]: { fontSize: 56, mb: 2 },
+          }}
         />
         <Typography variant="h4" component="p" sx={{ fontWeight: 300 }}>
           Solution de design
