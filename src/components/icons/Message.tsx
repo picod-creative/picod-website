@@ -10,6 +10,7 @@ const Message: FC<SvgIconProps> = (props) => (
     sx={{
       width: 'fit-content',
       fontSize: 44,
+      filter: 'drop-shadow(-9px -9px 16px rgba(231, 231, 231, 0.10))',
       ...props.sx,
     }}
   >
