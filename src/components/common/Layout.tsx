@@ -1,28 +1,31 @@
-import Head from "next/head";
-import React from "react";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Head from 'next/head';
+import { FC } from 'react';
+import Footer from './Footer';
+import MessageButton from './MessageButton';
+import Navbar from './Navbar';
 
 export interface LayoutProps {
   wrapInsideMain?: boolean;
   mainClassName?: string;
   mainStyle?: React.CSSProperties;
   title?: string;
+  showMessageButton?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({
+const Layout: FC<LayoutProps> = ({
   title,
   wrapInsideMain = true,
   children,
   mainStyle,
   mainClassName,
+  showMessageButton = false,
 }) => {
   return (
     <>
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge"></meta>
-        <title>{title || "Picod"}</title>
+        <title>{title || 'Picod'}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Navbar />
@@ -33,6 +36,7 @@ const Layout: React.FC<LayoutProps> = ({
       ) : (
         children
       )}
+      {showMessageButton ? <MessageButton /> : null}
       <Footer />
     </>
   );
