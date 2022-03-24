@@ -12,7 +12,7 @@ const Home: NextPageWithLayout = () => {
 
 Home.getLayout = (page) => {
   return (
-    <Layout wrapInsideMain={false} title="Picod creative">
+    <Layout wrapInsideMain={false} showMessageButton title="Picod creative">
       {page}
     </Layout>
   );
