@@ -19,6 +19,12 @@ const Footer: FC = () => {
     theme.breakpoints.down('md')
   );
 
+  const isTablet = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('lg')
+  );
+
+  const isLarge = useMediaQuery((theme: Theme) => theme.breakpoints.down('xl'));
+
   return (
     <footer>
       <Stack
@@ -63,7 +69,7 @@ const Footer: FC = () => {
           <Stack
             direction="row"
             alignItems="center"
-            spacing={isMobile ? 1.5 : 5}
+            spacing={isMobile ? 1.5 : isTablet ? 2 : isLarge ? 3 : 5}
             sx={{
               marginLeft: isMobile ? '-8px !important' : undefined,
             }}
@@ -100,7 +106,7 @@ const Footer: FC = () => {
         </Stack>
         <Stack
           direction="row"
-          spacing={6}
+          spacing={isMobile ? undefined : isTablet ? 2 : isLarge ? 3 : 6}
           sx={(theme) => ({
             position: 'absolute',
             left: '50%',
