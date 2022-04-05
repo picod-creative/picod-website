@@ -464,6 +464,7 @@ const Hero: FC = () => {
           variant={mobile ? 'logo-color' : 'logo-monochrome'}
           sx={{
             mb: 5.75,
+            fontSize: 130,
             [theme.breakpoints.down('md')]: { fontSize: 56, mb: 2 },
           }}
         />
