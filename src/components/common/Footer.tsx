@@ -74,34 +74,25 @@ const Footer: FC = () => {
               marginLeft: isMobile ? '-8px !important' : undefined,
             }}
           >
-            <IconButton
-              component="a"
-              href="https://twitter.com/Picod"
-              color="secondary"
-            >
-              <TwitterIcon fontSize="inherit" />
-            </IconButton>
-            <IconButton
-              component="a"
-              href="https://facebook.com"
-              color="secondary"
-            >
-              <FacebookIcon fontSize="inherit" />
-            </IconButton>
-            <IconButton
-              component="a"
-              href="https://danze.com"
-              color="secondary"
-            >
-              <DribbbleIcon fontSize="inherit" />
-            </IconButton>
-            <IconButton
-              component="a"
-              href="https://behance.net"
-              color="secondary"
-            >
-              <BehanceIcon fontSize="inherit" />
-            </IconButton>
+            {[
+              { href: 'https://twitter.com/picod', icon: TwitterIcon },
+              {
+                href: 'https://www.facebook.com/picod/',
+                icon: FacebookIcon,
+              },
+              { href: 'https://dribbble.com/picod', icon: DribbbleIcon },
+              { href: 'https://www.behance.net/picod', icon: BehanceIcon },
+            ].map(({ href, icon: Icon }) => (
+              <IconButton
+                key={href}
+                component="a"
+                href={href}
+                color="secondary"
+                target="_blank"
+              >
+                <Icon fontSize="inherit" />
+              </IconButton>
+            ))}
           </Stack>
         </Stack>
         <Stack
@@ -129,21 +120,22 @@ const Footer: FC = () => {
             },
           })}
         >
-          <MuiLink href="#services" color="text.primary" underline="hover">
-            Services
-          </MuiLink>
-          <MuiLink href="#portfolio" color="text.primary" underline="hover">
-            Portfolio
-          </MuiLink>
-          <MuiLink href="#whyUs" color="text.primary" underline="hover">
-            Pourquoi nous?
-          </MuiLink>
-          <MuiLink href="#ourWeapons" color="text.primary" underline="hover">
-            Nos armes
-          </MuiLink>
-          <MuiLink href="#testimonial" color="text.primary" underline="hover">
-            Testimonial
-          </MuiLink>
+          {[
+            { id: 'services', text: 'Services' },
+            { id: 'portfolio', text: 'Portfolio' },
+            { id: 'whyUs', text: 'Pourquoi nous?' },
+            { id: 'ourWeapons', text: 'Nos armes' },
+            { id: 'testimonial', text: 'Testimonial' },
+          ].map(({ id, text }) => (
+            <MuiLink
+              key={id}
+              href={`#${id}`}
+              color="text.primary"
+              underline="hover"
+            >
+              {text}
+            </MuiLink>
+          ))}
         </Stack>
       </Stack>
       <Stack
