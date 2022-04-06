@@ -10,6 +10,8 @@ export interface LayoutProps {
   mainStyle?: React.CSSProperties;
   title?: string;
   showMessageButton?: boolean;
+  hideNavbar?: boolean;
+  hideFooter?: boolean;
 }
 
 const Layout: FC<LayoutProps> = ({
@@ -19,6 +21,8 @@ const Layout: FC<LayoutProps> = ({
   mainStyle,
   mainClassName,
   showMessageButton = false,
+  hideNavbar = false,
+  hideFooter = false,
 }) => {
   return (
     <>
@@ -28,7 +32,7 @@ const Layout: FC<LayoutProps> = ({
         <title>{title || 'Picod'}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       {wrapInsideMain ? (
         <main className={mainClassName} style={mainStyle}>
           {children}
@@ -37,7 +41,7 @@ const Layout: FC<LayoutProps> = ({
         children
       )}
       {showMessageButton ? <MessageButton /> : null}
-      <Footer />
+      {!hideFooter && <Footer />}
     </>
   );
 };
