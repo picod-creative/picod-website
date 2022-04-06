@@ -14,7 +14,7 @@ const Picod: FC<PicodIconProps> = ({ variant, ...props }) =>
       fill="none"
       sx={{
         fontSize: 46,
-        width: 'fit-content',
+        width: 'auto',
         ...props.sx,
       }}
     >
@@ -35,7 +35,7 @@ const Picod: FC<PicodIconProps> = ({ variant, ...props }) =>
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       sx={{
-        width: 'fit-content',
+        width: 'auto',
         fontSize: 128,
         ...props.sx,
       }}
@@ -170,7 +170,7 @@ const Picod: FC<PicodIconProps> = ({ variant, ...props }) =>
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       sx={{
-        width: 'fit-content',
+        width: 'auto',
         fontSize: 51,
         ...props.sx,
       }}
