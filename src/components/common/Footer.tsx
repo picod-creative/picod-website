@@ -15,6 +15,8 @@ import DribbbleIcon from '../icons/Dribbble';
 import BehanceIcon from '../icons/Behance';
 
 const Footer: FC = () => {
+  const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
   );
@@ -66,7 +68,7 @@ const Footer: FC = () => {
             <a>
               <PicodIcon
                 variant="logo-monochrome"
-                sx={{ fontSize: isMobile ? '10vw' : 55 }}
+                sx={{ fontSize: isSmall ? 28 : isMobile ? 40 : 55 }}
               />
             </a>
           </Link>
@@ -79,7 +81,7 @@ const Footer: FC = () => {
               '& > *': {
                 [theme.breakpoints.down('sm')]: {
                   p: 0.5,
-                  fontSize: theme.typography.pxToRem(20),
+                  fontSize: theme.typography.pxToRem(15),
                 },
               },
             })}
