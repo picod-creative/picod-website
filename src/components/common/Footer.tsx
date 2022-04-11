@@ -33,12 +33,16 @@ const Footer: FC = () => {
         spacing={isMobile ? 4 : 0}
         sx={(theme) => ({
           position: 'relative',
-          px: 4,
-          py: 3.5,
+          px: 1.5,
+          py: 1.5,
           borderColor: 'rgba(255, 255, 255, 0.1)',
           borderWidth: 3,
           borderTopStyle: 'solid',
           borderBottomStyle: 'solid',
+          [theme.breakpoints.up('sm')]: {
+            px: 4,
+            py: 3.5,
+          },
           [theme.breakpoints.up('md')]: {
             px: 6,
           },
@@ -62,17 +66,23 @@ const Footer: FC = () => {
             <a>
               <PicodIcon
                 variant="logo-monochrome"
-                sx={{ fontSize: isMobile ? 36 : 55 }}
+                sx={{ fontSize: isMobile ? '10vw' : 55 }}
               />
             </a>
           </Link>
           <Stack
             direction="row"
             alignItems="center"
-            spacing={isMobile ? 1.5 : isTablet ? 2 : isLarge ? 3 : 5}
-            sx={{
+            spacing={isMobile ? 1 : isTablet ? 2 : isLarge ? 3 : 5}
+            sx={(theme) => ({
               marginLeft: isMobile ? '-8px !important' : undefined,
-            }}
+              '& > *': {
+                [theme.breakpoints.down('sm')]: {
+                  p: 0.5,
+                  fontSize: theme.typography.pxToRem(20),
+                },
+              },
+            })}
           >
             {[
               { href: 'https://twitter.com/picod', icon: TwitterIcon },
