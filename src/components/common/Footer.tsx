@@ -36,7 +36,7 @@ const Footer: FC = () => {
         sx={(theme) => ({
           position: 'relative',
           px: 1.5,
-          py: 1.5,
+          py: 4,
           borderColor: 'rgba(255, 255, 255, 0.1)',
           borderWidth: 3,
           borderTopStyle: 'solid',
@@ -60,9 +60,20 @@ const Footer: FC = () => {
           direction={isMobile ? 'column' : 'row'}
           justifyContent="space-between"
           spacing={isMobile ? 2 : 0}
-          sx={{
+          sx={(theme) => ({
             flex: !isMobile ? 1 : undefined,
-          }}
+            [theme.breakpoints.down('md')]: {
+              alignSelf: 'stretch',
+              '&::after': {
+                display: 'block',
+                content: "''",
+                backgroundColor: '#C4C4C4',
+                height: 2,
+                width: 33,
+                marginTop: 'auto',
+              },
+            },
+          })}
         >
           <Link href="/">
             <a>
@@ -77,11 +88,14 @@ const Footer: FC = () => {
             alignItems="center"
             spacing={isMobile ? 1 : isTablet ? 2 : isLarge ? 3 : 5}
             sx={(theme) => ({
-              marginLeft: isMobile ? '-8px !important' : undefined,
+              marginLeft: `${theme.spacing(-1)} !important`,
+              [theme.breakpoints.down('sm')]: {
+                marginLeft: `${theme.spacing(-0.5)} !important`,
+              },
               '& > *': {
                 [theme.breakpoints.down('sm')]: {
                   p: 0.5,
-                  fontSize: theme.typography.pxToRem(15),
+                  fontSize: theme.typography.pxToRem(18),
                 },
               },
             })}
