@@ -115,7 +115,6 @@ const Navbar: FC = () => {
             ].map(({ id, label }) => (
               <Link key={id} href={`#${id}`} passHref>
                 <MuiLink
-                  className={id === 'services' ? 'active' : ''}
                   underline="none"
                   sx={(theme) => ({
                     textAlign: 'right',
