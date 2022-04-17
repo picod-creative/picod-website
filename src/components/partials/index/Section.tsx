@@ -16,6 +16,9 @@ const Section: FC<SectionProps> = ({ prefix, title, children, ...props }) => (
         ? (props.sx as any)(theme)
         : props.sx),
       py: 6.5,
+      [theme.breakpoints.down('md')]: {
+        py: 5,
+      },
     })}
   >
     <Typography
@@ -38,6 +41,7 @@ const Section: FC<SectionProps> = ({ prefix, title, children, ...props }) => (
           height: 2,
         },
         [theme.breakpoints.down('md')]: {
+          mb: 1.5,
           fontSize: theme.typography.pxToRem(24),
           '&::after': {
             width: '21vw',
