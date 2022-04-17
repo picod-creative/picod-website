@@ -11,9 +11,12 @@ const Section: FC<SectionProps> = ({ prefix, title, children, ...props }) => (
   <Container
     component="section"
     {...props}
-    sx={{
+    sx={(theme) => ({
+      ...(typeof (props.sx as any) === 'function'
+        ? (props.sx as any)(theme)
+        : props.sx),
       py: 6.5,
-    }}
+    })}
   >
     <Typography
       variant="h1"
