@@ -57,4 +57,11 @@ theme.typography.h6 = {
   },
 };
 
+theme.typography.body1 = {
+  ...theme.typography.body1,
+  [theme.breakpoints.down('md')]: {
+    fontSize: '0.875rem',
+  },
+};
+
 export default theme;

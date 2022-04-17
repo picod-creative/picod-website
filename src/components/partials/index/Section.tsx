@@ -37,6 +37,13 @@ const Section: FC<SectionProps> = ({ prefix, title, children, ...props }) => (
           width: 330,
           height: 2,
         },
+        [theme.breakpoints.down('md')]: {
+          fontSize: theme.typography.pxToRem(24),
+          '&::after': {
+            width: '21vw',
+            bottom: theme.spacing(0.5),
+          },
+        },
       })}
     >
       {prefix ? (
