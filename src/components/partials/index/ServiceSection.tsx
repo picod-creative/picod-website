@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Theme, Typography, useMediaQuery } from '@mui/material';
 import Section from './Section';
 import { Service } from '../../../@types';
 import {
@@ -73,45 +73,66 @@ const services: Service[] = [
   },
 ];
 
-const ServiceSection: FC = () => (
-  <Section id="services" prefix="Nos" title="Services">
-    <Typography>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
-      ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
-      vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
-      molestie a. Blandit ut feugiat eu luctus aliquet eget neque bibendum diam.
-      Tempus dapibus aenean sit in consequat. Sed rutrum praesent euismod
-      nullam. Lectus eget nunc habitant id urna amet. Urna libero mauris eu
-      suspendisse elit, enim. Maecenas eu ac sollicitudin viverra nec aliquet at
-      vulputate.
-    </Typography>
-    <Grid sx={{ mt: 9 }} container spacing={3.5}>
-      {services.map(({ id, title, description, icon: Icon }) => (
-        <Grid key={id} item xs={12} md={4} lg={3}>
-          <Card
-            borderRadius={2.5}
-            sx={(theme) => ({
-              minHeight: 311,
-              p: 4,
-              '& .icon': {
-                color: theme.palette.secondary.main,
-                mb: 2,
-              },
-              '& h6': {
-                fontWeight: 800,
-                mb: 1.5,
-              },
-            })}
-          >
-            <Icon className="icon" />
-            <br />
-            <Typography variant="h6">{title}</Typography>
-            <Typography variant="body2">{description}</Typography>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  </Section>
-);
+const ServiceSection: FC = () => {
+  const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down('md')
+  );
+
+  return (
+    <Section id="services" prefix="Nos" title="Services">
+      <Typography>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
+        ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
+        vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
+        molestie a. Blandit ut feugiat eu luctus aliquet eget neque bibendum
+        diam. Tempus dapibus aenean sit in consequat. Sed rutrum praesent
+        euismod nullam. Lectus eget nunc habitant id urna amet. Urna libero
+        mauris eu suspendisse elit, enim. Maecenas eu ac sollicitudin viverra
+        nec aliquet at vulputate.
+      </Typography>
+      <Grid
+        sx={(theme) => ({
+          mt: 9,
+          [theme.breakpoints.down('md')]: {
+            mt: 2,
+          },
+        })}
+        container
+        spacing={isXs ? 2 : isMobile ? 1 : 3.5}
+      >
+        {services.map(({ id, title, description, icon: Icon }) => (
+          <Grid key={id} item xs={12} sm={6} md={4} lg={3}>
+            <Card
+              borderRadius={2.5}
+              sx={(theme) => ({
+                minHeight: 311,
+                p: 4,
+                '& .icon': {
+                  color: theme.palette.secondary.main,
+                  mb: 2,
+                },
+                '& h6': {
+                  fontWeight: 800,
+                  mb: 1.5,
+                },
+                [theme.breakpoints.down('md')]: {
+                  p: 2,
+                  minHeight: 'auto',
+                  height: '100%',
+                },
+              })}
+            >
+              <Icon className="icon" />
+              <br />
+              <Typography variant="h6">{title}</Typography>
+              <Typography variant="body2">{description}</Typography>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Section>
+  );
+};
 
 export default ServiceSection;
