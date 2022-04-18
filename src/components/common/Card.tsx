@@ -31,6 +31,7 @@ const Card: React.FC<CardProps> = ({
           // Get the mouse position relative to the card
           const offsetX = clientX - x - borderRef.current.offsetWidth / 2,
             offsetY = clientY - y - borderRef.current.offsetHeight / 2;
+          // Set the custom properties on the border used for the background's position
           borderRef.current.style.setProperty('--offsetX', `${offsetX}px`);
           borderRef.current.style.setProperty('--offsetY', `${offsetY}px`);
         }
@@ -59,6 +60,7 @@ const Card: React.FC<CardProps> = ({
     );
 
     return () => {
+      // Cleanup all event listeners on unmount
       document.removeEventListener('scroll', onScroll);
       document.removeEventListener('mousemove', onMouseMove);
     };
