@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { createRef, FC, useEffect, useState } from 'react';
 import { Twitter as TwitterIcon } from '@mui/icons-material';
 import {
   AppBar,
@@ -8,7 +8,10 @@ import {
   Link as MuiLink,
   Stack,
   SwipeableDrawer,
+  Theme,
   Typography,
+  useMediaQuery,
+  useScrollTrigger,
   useTheme,
 } from '@mui/material';
 import PicodIcon from '../icons/Picod';
@@ -20,11 +23,36 @@ import DribbbleIcon from '../icons/Dribbble';
 import BehanceIcon from '../icons/Behance';
 
 const Navbar: FC = () => {
-  const theme = useTheme();
+  const appBarRef = createRef<HTMLDivElement>();
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  const theme = useTheme();
+  const addBackground = useScrollTrigger({
+    threshold: mobile
+      ? 200
+      : windowHeight - (appBarRef.current?.offsetHeight || 126),
+    disableHysteresis: true,
+  });
+
+  useEffect(() => {
+    // Set window height here, as it's not available on the first render (server side rendering)
+    setWindowHeight(window.innerHeight);
+
+    // Update the window height on resize
+    const onResize: (this: Window, event: UIEvent) => void = function (event) {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', onResize);
+
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   return (
     <AppBar
+      ref={appBarRef}
       elevation={0}
       color="transparent"
       position="fixed"
@@ -36,7 +64,8 @@ const Navbar: FC = () => {
         py: 5,
         px: 8,
         fontFamily: 'Roboto',
-        transition: 'padding .25s ease-out',
+        transition: 'padding .25s ease-out, background-color .25s ease-out',
+        backgroundColor: addBackground ? '#0f0f0f' : undefined,
         [theme.breakpoints.down('md')]: {
           py: 2,
           px: 3,
