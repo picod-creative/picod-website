@@ -73,7 +73,7 @@ const Card: React.FC<CardProps> = ({
           borderRadius,
           zIndex: -1,
           background:
-            'radial-gradient(100% 100% at 0% 100%, #1F1F1F 0%, #111111 100%)',
+            'radial-gradient(150% 150% at 0% 100%, #1F1F1F 0%, #111111 100%)',
         },
         ...((typeof props.sx as any) === 'function'
           ? (props.sx as any)(theme)
