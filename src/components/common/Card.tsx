@@ -42,6 +42,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <MuiCard
       ref={cardRef}
+      tabIndex={0}
       {...props}
       elevation={0}
       sx={(theme) => ({
