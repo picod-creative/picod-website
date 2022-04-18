@@ -47,7 +47,8 @@ const SectionNav: FC = () => {
       sx={(theme) => ({
         position: 'sticky',
         top: theme.typography.pxToRem(126),
-        backgroundColor: 'rgba(14, 14, 14, 0.6)',
+        backgroundColor: '#0f0f0f',
+        zIndex: theme.zIndex.drawer,
         [theme.breakpoints.down('md')]: {
           display: 'none',
         },
