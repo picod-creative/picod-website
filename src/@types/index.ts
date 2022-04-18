@@ -1,6 +1,7 @@
-import type { ReactElement, ReactNode } from "react";
-import type { NextPage } from "next";
-import type { AppProps } from "next/app";
+import type { ElementType, ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import { SvgIconProps } from '@mui/material';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -13,4 +14,11 @@ export type AppPropsWithLayout = AppProps & {
 export type Section = {
   id: string;
   title: string;
+};
+
+export type Service = {
+  id: string;
+  title: string;
+  icon: ElementType<SvgIconProps>;
+  description: string;
 };
