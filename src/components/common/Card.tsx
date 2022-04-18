@@ -17,26 +17,51 @@ const Card: React.FC<CardProps> = ({
 
   // Listen for every mouse move on the body, and update the border's background accordingly
   useEffect(() => {
+    let lastMouseY: number;
+
     const onMouseMove: (this: Document, event: MouseEvent) => void = function (
       e
     ) {
       if (cardRef.current) {
         const { x, y } = cardRef.current.getBoundingClientRect();
         const { clientX, clientY } = e;
+        lastMouseY = clientY;
 
         if (borderRef.current) {
           // Get the mouse position relative to the card
           const offsetX = clientX - x - borderRef.current.offsetWidth / 2,
             offsetY = clientY - y - borderRef.current.offsetHeight / 2;
-          borderRef.current.style.backgroundPosition = `${offsetX}px ${offsetY}px`;
+          borderRef.current.style.setProperty('--offsetX', `${offsetX}px`);
+          borderRef.current.style.setProperty('--offsetY', `${offsetY}px`);
         }
       }
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.dispatchEvent(new MouseEvent('mousemove'));
+    const onScroll: (this: Document, event: Event) => void = function (e) {
+      if (cardRef.current) {
+        const { y } = cardRef.current.getBoundingClientRect();
 
-    return () => document.removeEventListener('mousemove', onMouseMove);
+        if (borderRef.current) {
+          // Update position in the y axis as we know the card is moving only in the y axis when scrolling
+          const offsetY = lastMouseY - y - borderRef.current.offsetHeight / 2;
+          borderRef.current.style.setProperty('--offsetY', `${offsetY}px`);
+        }
+      }
+    };
+
+    document.addEventListener('scroll', onScroll);
+    document.addEventListener('mousemove', onMouseMove);
+    document.dispatchEvent(
+      new MouseEvent('mousemove', {
+        clientX: 0,
+        clientY: 0,
+      })
+    );
+
+    return () => {
+      document.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mousemove', onMouseMove);
+    };
   }, [borderRadius, borderRef, cardRef]);
 
   return (
@@ -62,6 +87,7 @@ const Card: React.FC<CardProps> = ({
           zIndex: -1,
           backgroundImage: `radial-gradient(circle at center, ${theme.palette.secondary.main} 0%, rgba(255, 164, 29, 0) 60%)`,
           backgroundRepeat: 'no-repeat',
+          backgroundPosition: `var(--offsetX) var(--offsetY)`,
         },
         '&::after': {
           content: '""',
