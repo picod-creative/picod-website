@@ -30,12 +30,9 @@ const Navbar: FC = () => {
   const [windowHeight, setWindowHeight] = useState(0);
 
   const { navHeight, setNavHeight } = useDimensionContext();
-  const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
   const addBackground = useScrollTrigger({
-    threshold: mobile
-      ? 200
-      : windowHeight - (appBarRef.current?.offsetHeight || 126),
+    threshold: 200,
     disableHysteresis: true,
   });
   const showNav = useScrollTrigger();
