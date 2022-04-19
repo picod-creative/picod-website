@@ -163,6 +163,7 @@ const Navbar: FC = () => {
             ].map(({ id, label }) => (
               <Link key={id} href={`#${id}`} passHref>
                 <MuiLink
+                  onClick={() => setOpenDrawer(false)}
                   underline="none"
                   sx={(theme) => ({
                     textAlign: 'right',
