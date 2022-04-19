@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
+import { DimensionContextProvider } from './DimensionContext';
 import Footer from './Footer';
 import MessageButton from './MessageButton';
 import Navbar from './Navbar';
@@ -32,16 +33,18 @@ const Layout: FC<LayoutProps> = ({
         <title>{title || 'Picod'}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      {!hideNavbar && <Navbar />}
-      {wrapInsideMain ? (
-        <main className={mainClassName} style={mainStyle}>
-          {children}
-        </main>
-      ) : (
-        children
-      )}
-      {showMessageButton ? <MessageButton /> : null}
-      {!hideFooter && <Footer />}
+      <DimensionContextProvider>
+        {!hideNavbar && <Navbar />}
+        {wrapInsideMain ? (
+          <main className={mainClassName} style={mainStyle}>
+            {children}
+          </main>
+        ) : (
+          children
+        )}
+        {showMessageButton ? <MessageButton /> : null}
+        {!hideFooter && <Footer />}
+      </DimensionContextProvider>
     </>
   );
 };
