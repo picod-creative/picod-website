@@ -21,12 +21,15 @@ import CloseIcon from '../icons/Close';
 import FacebookIcon from '../icons/Facebook';
 import DribbbleIcon from '../icons/Dribbble';
 import BehanceIcon from '../icons/Behance';
+import { useDimensionContext } from './DimensionContext';
+import HideOnScroll from './HideOnScroll';
 
 const Navbar: FC = () => {
   const appBarRef = createRef<HTMLDivElement>();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [windowHeight, setWindowHeight] = useState(0);
 
+  const { navHeight, setNavHeight } = useDimensionContext();
   const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const theme = useTheme();
   const addBackground = useScrollTrigger({
@@ -35,78 +38,93 @@ const Navbar: FC = () => {
       : windowHeight - (appBarRef.current?.offsetHeight || 126),
     disableHysteresis: true,
   });
+  const showNav = useScrollTrigger();
 
   useEffect(() => {
     // Set window height here, as it's not available on the first render (server side rendering)
     setWindowHeight(window.innerHeight);
+    // Set dimension context's navHeight here
+    if (appBarRef.current && navHeight !== appBarRef.current.offsetHeight) {
+      setNavHeight(appBarRef.current.offsetHeight);
+    }
 
-    // Update the window height on resize
+    // Update the window height & navHeight on resize
     const onResize: (this: Window, event: UIEvent) => void = function (event) {
       setWindowHeight(window.innerHeight);
+      if (appBarRef.current && navHeight !== appBarRef.current.offsetHeight) {
+        setNavHeight(appBarRef.current.offsetHeight);
+      }
     };
 
     window.addEventListener('resize', onResize);
 
     return () => window.removeEventListener('resize', onResize);
-  }, []);
+  }, [appBarRef, navHeight, setNavHeight]);
 
   return (
-    <AppBar
-      ref={appBarRef}
-      elevation={0}
-      color="transparent"
-      position="fixed"
-      sx={{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        py: 5,
-        px: 8,
-        fontFamily: 'Roboto',
-        transition: 'padding .25s ease-out, background-color .25s ease-out',
-        backgroundColor: addBackground ? '#0f0f0f' : undefined,
-        [theme.breakpoints.down('md')]: {
-          py: 2,
-          px: 3,
-        },
-      }}
-    >
-      <Link href="/" passHref>
-        <MuiLink sx={{ display: 'flex' }}>
-          <PicodIcon variant="icon" />
-        </MuiLink>
-      </Link>
-      <Hidden mdUp implementation="css">
-        <IconButton onClick={() => setOpenDrawer(true)} sx={{ p: 2, mr: -2 }}>
-          <MenuIcon />
-        </IconButton>
-      </Hidden>
-      <Hidden mdDown implementation="css">
-        <Stack direction="row" alignItems="center" spacing={4}>
-          <Link href="/about" passHref>
-            <MuiLink underline="none" color="inherit">
-              A propos
+    <>
+      <HideOnScroll>
+        <AppBar
+          ref={appBarRef}
+          elevation={0}
+          color="transparent"
+          position="fixed"
+          sx={{
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            py: 5,
+            px: 8,
+            fontFamily: 'Roboto',
+            transition: 'padding .25s ease-out, background-color .25s ease-out',
+            backgroundColor: addBackground ? '#0f0f0f' : undefined,
+            [theme.breakpoints.down('md')]: {
+              py: 2,
+              px: 3,
+            },
+          }}
+        >
+          <Link href="/" passHref>
+            <MuiLink sx={{ display: 'flex' }}>
+              <PicodIcon variant="icon" />
             </MuiLink>
           </Link>
-          <Link href="/contact" passHref>
-            <Button
-              variant="contained"
-              color="inherit"
-              sx={{
-                borderRadius: 100,
-                textTransform: 'none',
-                color: '#666666',
-                px: 4,
-                py: 1,
-              }}
-              component="a"
+          <Hidden mdUp implementation="css">
+            <IconButton
+              onClick={() => setOpenDrawer(true)}
+              sx={{ p: 2, mr: -2 }}
             >
-              Contact
-            </Button>
-          </Link>
-        </Stack>
-      </Hidden>
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <Hidden mdDown implementation="css">
+            <Stack direction="row" alignItems="center" spacing={4}>
+              <Link href="/about" passHref>
+                <MuiLink underline="none" color="inherit">
+                  A propos
+                </MuiLink>
+              </Link>
+              <Link href="/contact" passHref>
+                <Button
+                  variant="contained"
+                  color="inherit"
+                  sx={{
+                    borderRadius: 100,
+                    textTransform: 'none',
+                    color: '#666666',
+                    px: 4,
+                    py: 1,
+                  }}
+                  component="a"
+                >
+                  Contact
+                </Button>
+              </Link>
+            </Stack>
+          </Hidden>
+        </AppBar>
+      </HideOnScroll>
       <Hidden mdUp>
         <SwipeableDrawer
           anchor="right"
@@ -257,7 +275,7 @@ const Navbar: FC = () => {
           </Stack>
         </SwipeableDrawer>
       </Hidden>
-    </AppBar>
+    </>
   );
 };
 

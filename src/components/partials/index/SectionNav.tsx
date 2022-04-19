@@ -1,8 +1,8 @@
-import { FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
 import type { Section } from '../../../@types';
-import { Container, Tab, Tabs, Box } from '@mui/material';
+import { Container, Tab, Tabs, Box, useScrollTrigger } from '@mui/material';
 
-const sections: Section[] = [
+export const sections: Section[] = [
   {
     id: 'services',
     title: 'Services',
@@ -29,26 +29,25 @@ const sections: Section[] = [
   },
 ];
 
-const SectionNav: FC = () => {
-  const [activeSection, setActiveSection] = useState(sections[0].id);
+export interface SectionNavProps {
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+}
 
-  useEffect(() => {
-    const handleScroll: (this: Window, event: Event) => void = function (
-      event
-    ) {};
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+const SectionNav: FC<SectionNavProps> = ({
+  activeSection,
+  setActiveSection,
+}) => {
+  const scrollTrigger = useScrollTrigger();
 
   return (
     <Box
       sx={(theme) => ({
         position: 'sticky',
-        top: theme.typography.pxToRem(126),
+        top: !scrollTrigger ? theme.typography.pxToRem(126) : 0,
         backgroundColor: '#0f0f0f',
         zIndex: theme.zIndex.drawer,
+        transition: 'top 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
         [theme.breakpoints.down('md')]: {
           display: 'none',
         },
