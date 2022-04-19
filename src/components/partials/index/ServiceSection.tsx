@@ -73,14 +73,25 @@ const services: Service[] = [
   },
 ];
 
-const ServiceSection: FC = () => {
+export interface ServiceSectionProps {
+  active?: boolean;
+  onEnter?: (value: string) => void;
+}
+
+const ServiceSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
   const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
   );
 
   return (
-    <Section id="services" prefix="Nos" title="Services">
+    <Section
+      id="services"
+      prefix="Nos"
+      title="Services"
+      active={active}
+      onEnter={() => onEnter?.('services')}
+    >
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
         ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
