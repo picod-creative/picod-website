@@ -78,7 +78,7 @@ const Navbar: FC = () => {
             px: 8,
             fontFamily: 'Roboto',
             transition:
-              'padding .25s ease-out, background-color .25s ease-out, transform 225ms cubic-bezier(0.4, 0, 0.2, 1) !important',
+              'padding .25s ease-out, background-color .25s ease-out, transform 225ms cubic-bezier(0, 0, 0.2, 1) !important',
             backgroundColor: addBackground ? '#0f0f0f' : undefined,
             [theme.breakpoints.down('md')]: {
               py: 2,
