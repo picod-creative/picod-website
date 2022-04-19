@@ -1,6 +1,7 @@
-import type { FC } from 'react';
+import { createRef, FC, useEffect } from 'react';
 import type { Section } from '../../../@types';
 import { Container, Tab, Tabs, Box, useScrollTrigger } from '@mui/material';
+import { useDimensionContext } from '../../common/DimensionContext';
 
 export const sections: Section[] = [
   {
@@ -38,7 +39,16 @@ const SectionNav: FC<SectionNavProps> = ({
   activeSection,
   setActiveSection,
 }) => {
+  const ref = createRef<HTMLDivElement>();
+
+  const { setSectionNavHeight } = useDimensionContext();
   const scrollTrigger = useScrollTrigger();
+
+  useEffect(() => {
+    if (ref.current) {
+      setSectionNavHeight(ref.current.offsetHeight);
+    }
+  }, [ref, setSectionNavHeight]);
 
   return (
     <Box
