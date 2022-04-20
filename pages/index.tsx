@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { NextPageWithLayout } from '../src/@types';
 import Layout from '../src/components/common/Layout';
 import Hero from '../src/components/partials/index/Hero';
+import PortfolioSection from '../src/components/partials/index/PortfolioSection';
 import SectionNav, {
   sections,
 } from '../src/components/partials/index/SectionNav';
@@ -16,6 +17,10 @@ const Home: NextPageWithLayout = () => {
       <SectionNav {...{ activeSection, setActiveSection }} />
       <ServiceSection
         active={activeSection === 'services'}
+        onEnter={setActiveSection}
+      />
+      <PortfolioSection
+        active={activeSection === 'portfolio'}
         onEnter={setActiveSection}
       />
     </>
