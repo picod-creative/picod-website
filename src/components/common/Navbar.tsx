@@ -8,9 +8,7 @@ import {
   Link as MuiLink,
   Stack,
   SwipeableDrawer,
-  Theme,
   Typography,
-  useMediaQuery,
   useScrollTrigger,
   useTheme,
 } from '@mui/material';
@@ -27,7 +25,6 @@ import HideOnScroll from './HideOnScroll';
 const Navbar: FC = () => {
   const appBarRef = createRef<HTMLDivElement>();
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(0);
 
   const { navHeight, setNavHeight } = useDimensionContext();
   const theme = useTheme();
@@ -35,19 +32,15 @@ const Navbar: FC = () => {
     threshold: 200,
     disableHysteresis: true,
   });
-  const showNav = useScrollTrigger();
 
   useEffect(() => {
-    // Set window height here, as it's not available on the first render (server side rendering)
-    setWindowHeight(window.innerHeight);
     // Set dimension context's navHeight here
     if (appBarRef.current && navHeight !== appBarRef.current.offsetHeight) {
       setNavHeight(appBarRef.current.offsetHeight);
     }
 
-    // Update the window height & navHeight on resize
+    // Update the navHeight on resize
     const onResize: (this: Window, event: UIEvent) => void = function (event) {
-      setWindowHeight(window.innerHeight);
       if (appBarRef.current && navHeight !== appBarRef.current.offsetHeight) {
         setNavHeight(appBarRef.current.offsetHeight);
       }
