@@ -13,7 +13,7 @@ const MessageButton: FC<IconButtonProps> = (props) => {
         position: 'fixed',
         aspectRatio: '1',
         p: 2,
-        zIndex: (theme) => theme.zIndex.appBar,
+        zIndex: (theme) => theme.zIndex.tooltip,
         bottom: (theme) => theme.spacing(6),
         right: (theme) => theme.spacing(6),
         [theme.breakpoints.down('md')]: {
