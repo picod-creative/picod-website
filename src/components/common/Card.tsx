@@ -26,29 +26,30 @@ const Card: React.FC<CardProps> = ({
 
   // Listen for every mouse move on the body, and update the border's background accordingly
   useEffect(() => {
+    let lastMouseY: number,
+      onMouseMove: ((this: Document, event: MouseEvent) => void) | null = null,
+      onScroll: ((this: Document, event: Event) => void) | null = null;
+
     // Only run this effect if we are not on mobile
     if (!isMobile) {
-      let lastMouseY: number;
+      onMouseMove = function (e) {
+        if (cardRef.current) {
+          const { x, y } = cardRef.current.getBoundingClientRect();
+          const { clientX, clientY } = e;
+          lastMouseY = clientY;
 
-      const onMouseMove: (this: Document, event: MouseEvent) => void =
-        function (e) {
-          if (cardRef.current) {
-            const { x, y } = cardRef.current.getBoundingClientRect();
-            const { clientX, clientY } = e;
-            lastMouseY = clientY;
-
-            if (borderRef.current) {
-              // Get the mouse position relative to the card
-              const offsetX = clientX - x - borderRef.current.offsetWidth / 2,
-                offsetY = clientY - y - borderRef.current.offsetHeight / 2;
-              // Set the custom properties on the border used for the background's position
-              borderRef.current.style.setProperty('--offsetX', `${offsetX}px`);
-              borderRef.current.style.setProperty('--offsetY', `${offsetY}px`);
-            }
+          if (borderRef.current) {
+            // Get the mouse position relative to the card
+            const offsetX = clientX - x - borderRef.current.offsetWidth / 2,
+              offsetY = clientY - y - borderRef.current.offsetHeight / 2;
+            // Set the custom properties on the border used for the background's position
+            borderRef.current.style.setProperty('--offsetX', `${offsetX}px`);
+            borderRef.current.style.setProperty('--offsetY', `${offsetY}px`);
           }
-        };
+        }
+      };
 
-      const onScroll: (this: Document, event: Event) => void = function (e) {
+      onScroll = function (e) {
         if (cardRef.current) {
           const { y } = cardRef.current.getBoundingClientRect();
 
@@ -68,13 +69,14 @@ const Card: React.FC<CardProps> = ({
           clientY: 0,
         })
       );
-
-      return () => {
-        // Cleanup all event listeners on unmount
-        document.removeEventListener('scroll', onScroll);
-        document.removeEventListener('mousemove', onMouseMove);
-      };
     }
+
+    return () => {
+      // Cleanup all event listeners on unmount
+      onScroll && document.removeEventListener('scroll', onScroll);
+      onMouseMove && document.removeEventListener('mousemove', onMouseMove);
+      onScroll = onMouseMove = null;
+    };
   }, [borderRadius, borderRef, cardRef, isMobile]);
 
   return (
