@@ -1,6 +1,38 @@
 import { FC, useState } from 'react';
-import { Tab, Tabs, Theme, Typography, useMediaQuery } from '@mui/material';
+import {
+  Tab,
+  Tabs,
+  Theme,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import Section from './Section';
+import SwipeableViews from 'react-swipeable-views';
+import TabPanel from '../../common/TabPanel';
+
+const tabs = [
+  {
+    value: 'all',
+    label: 'Tous',
+  },
+  {
+    value: 'web',
+    label: 'Web',
+  },
+  {
+    value: 'app',
+    label: 'App',
+  },
+  {
+    value: 'software',
+    label: 'Logiciel',
+  },
+  {
+    value: 'design',
+    label: 'Design',
+  },
+];
 
 export interface PortfolioSectionProps {
   active?: boolean;
@@ -8,9 +40,10 @@ export interface PortfolioSectionProps {
 }
 
 const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
+  const theme = useTheme();
   const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
-  const [currentTab, setCurrentTab] = useState<string>('all');
+  const [currentTabIndex, setCurrentTabIndex] = useState<number>(0);
 
   return (
     <Section
@@ -47,10 +80,13 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
         nec aliquet at vulputate.
       </Typography>
       <Tabs
-        value={currentTab}
-        onChange={(_, newValue) => setCurrentTab(newValue)}
+        value={tabs[currentTabIndex].value}
+        onChange={(_, newValue) =>
+          setCurrentTabIndex(tabs.findIndex((tab) => tab.value === newValue))
+        }
         centered={!mobile}
         variant={mobile ? 'scrollable' : 'standard'}
+        scrollButtons="auto"
         textColor="secondary"
         sx={(theme) => ({
           mt: 7.5,
@@ -61,14 +97,35 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
             textTransform: 'none',
             fontSize: theme.typography.pxToRem(18),
           },
+          [theme.breakpoints.down('md')]: {
+            mt: 2,
+          },
         })}
       >
-        <Tab label="Tous" value="all" />
-        <Tab label="Web" value="web" />
-        <Tab label="Apps" value="app" />
-        <Tab label="Logiciel" value="software" />
-        <Tab label="Graphic Design" value="design" />
+        {tabs.map((tab, i) => (
+          <Tab key={tab.value} {...tab} id={`portfolio-category-tab-${i}`} />
+        ))}
       </Tabs>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={currentTabIndex}
+        onChangeIndex={setCurrentTabIndex}
+      >
+        {tabs.map((tab, i) => (
+          <TabPanel
+            key={tab.value}
+            name="portfolio-category"
+            index={currentTabIndex}
+            value={i}
+            sx={{
+              pt: 8,
+              pb: 4,
+            }}
+          >
+            <Typography textAlign="center">{tab.label}</Typography>
+          </TabPanel>
+        ))}
+      </SwipeableViews>
     </Section>
   );
 };
