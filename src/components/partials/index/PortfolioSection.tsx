@@ -87,6 +87,7 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
         centered={!mobile}
         variant={mobile ? 'scrollable' : 'standard'}
         scrollButtons="auto"
+        allowScrollButtonsMobile
         textColor="secondary"
         sx={(theme) => ({
           mt: 7.5,
@@ -97,13 +98,29 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
             textTransform: 'none',
             fontSize: theme.typography.pxToRem(18),
           },
+          '& .MuiTabs-flexContainer button': {
+            [theme.breakpoints.up('lg')]: {
+              mx: 4,
+            },
+            [theme.breakpoints.up('md')]: {
+              mx: 2,
+            },
+          },
+          '& .MuiTabs-scrollButtons.Mui-disabled': {
+            opacity: 0.3,
+          },
           [theme.breakpoints.down('md')]: {
             mt: 2,
           },
         })}
       >
         {tabs.map((tab, i) => (
-          <Tab key={tab.value} {...tab} id={`portfolio-category-tab-${i}`} />
+          <Tab
+            key={tab.value}
+            {...tab}
+            value={tab.value}
+            id={`portfolio-category-tab-${i}`}
+          />
         ))}
       </Tabs>
       <SwipeableViews
