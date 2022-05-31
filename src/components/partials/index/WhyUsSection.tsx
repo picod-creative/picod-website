@@ -7,12 +7,12 @@ import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import Section from './Section';
 import Card from '../../common/Card';
 
-export interface PortfolioSectionProps {
+export interface WhyUsSectionProps {
   active?: boolean;
   onEnter?: (value: string) => void;
 }
 
-const WhyUsSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
+const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
   const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
