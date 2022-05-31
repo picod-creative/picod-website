@@ -51,7 +51,7 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
       prefix="Notre"
       title="Portfolio"
       active={active}
-      onEnter={() => onEnter?.('portfolio')}
+      onEnter={() => onEnter?.('whyus')}
       sx={{
         position: 'relative',
         '&::before': {
