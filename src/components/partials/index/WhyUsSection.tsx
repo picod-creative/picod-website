@@ -7,6 +7,30 @@ import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import Section from './Section';
 import Card from '../../common/Card';
 
+const services: Service[] = [
+  {
+    id: 'report',
+    title: 'Un rapport qualité-prix optimal',
+    description:
+      'Chez PICOD Creative, nous pensons que la révolution numérique en cours doit pouvoir être accessible à tous sans concession sur la qualité.',
+    icon: AttachMoneyIcon,
+  },
+  {
+    id: 'collective',
+    title: 'Un collectif d’experts dédiés à votre projet',
+    description:
+      'Chez PICOD Creative, chaque projet fait l’objet d’un suivi rigoureux avec intégration dans des outils de suivi (Trello et Slack).',
+    icon: BuildIcon,
+  },
+  {
+    id: 'guarantee',
+    title: 'Des garanties élevées',
+    description:
+      'Chez PICOD Creative, chaque projet est garanti entre 30 et 60 jours même après la livraison du projet afin de répondre à toutes les éventuelles demandes.',
+    icon: HourglassFullIcon,
+  },
+];
+
 export interface WhyUsSectionProps {
   active?: boolean;
   onEnter?: (value: string) => void;
@@ -18,37 +42,13 @@ const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
     theme.breakpoints.down('md')
   );
 
-  const services: Service[] = [
-    {
-      id: 'report',
-      title: 'Un rapport qualité-prix optimal',
-      description:
-        'Chez PICOD Creative, nous pensons que la révolution numérique en cours doit pouvoir être accessible à tous sans concession sur la qualité.',
-      icon: AttachMoneyIcon,
-    },
-    {
-      id: 'collective',
-      title: 'Un collectif d’experts dédiés à votre projet',
-      description:
-        'Chez PICOD Creative, chaque projet fait l’objet d’un suivi rigoureux avec intégration dans des outils de suivi (Trello et Slack).',
-      icon: BuildIcon,
-    },
-    {
-      id: 'guarantee',
-      title: 'Des garanties élevées',
-      description:
-        'Chez PICOD Creative, chaque projet est garanti entre 30 et 60 jours même après la livraison du projet afin de répondre à toutes les éventuelles demandes.',
-      icon: HourglassFullIcon,
-    },
-  ];
-
   return (
     <Section
-      id="portfolio"
+      id="whyUs"
       prefix="Alors"
       title="Pourquoi nous ?"
       active={active}
-      onEnter={() => onEnter?.('portfolio')}
+      onEnter={() => onEnter?.('whyUs')}
       sx={{
         position: 'relative',
         '&::before': {
