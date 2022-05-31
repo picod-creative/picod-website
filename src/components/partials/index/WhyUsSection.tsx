@@ -1,4 +1,4 @@
-import { Grid, Typography, Theme, useMediaQuery } from '@mui/material';
+import { Grid, Typography, Theme, useMediaQuery, Box } from '@mui/material';
 import React, { FC } from 'react';
 import { Service } from '../../../@types';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -37,8 +37,7 @@ export interface WhyUsSectionProps {
 }
 
 const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
-  const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
-  const isMobile = useMediaQuery((theme: Theme) =>
+  const isDesktop = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
   );
 
@@ -73,52 +72,55 @@ const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
         molestie a.
       </Typography>
 
-      <Grid
+      <Box
         sx={(theme) => ({
           mt: 9,
+          mx: 7.5,
+          [theme.breakpoints.down('lg')]: {
+            mx: 0,
+          },
           [theme.breakpoints.down('md')]: {
-            mt: 2,
+            mt: 4,
           },
         })}
-        container
-        spacing={isXs ? 2 : isMobile ? 1 : 3.5}
       >
-        {services.map(({ id, title, description, icon: Icon }) => (
-          <Grid key={id} item xs={12} sm={6} md={4} lg={4}>
-            <Card
-              borderRadius={2.5}
-              sx={(theme) => ({
-                minHeight: 330,
-                minWidth: 330,
-                textAlign: 'center',
-                p: 4,
-                '& .icon': {
-                  color: theme.palette.secondary.main,
-                  mb: 2,
-                  backgroundColor: '#362C1C',
-                  p: 0.5,
-                  borderRadius: 1,
-                  fontSize: 35,
-                },
-                '& h6': {
-                  fontWeight: 800,
-                  mb: 1.5,
-                },
-                [theme.breakpoints.down('md')]: {
-                  p: 2,
-                  minHeight: 'auto',
+        <Grid container spacing={isDesktop ? 2 : 6.5}>
+          {services.map(({ id, title, description, icon: Icon }) => (
+            <Grid key={id} item xs={12} sm={6} lg={4}>
+              <Card
+                borderRadius={5}
+                sx={(theme) => ({
+                  textAlign: 'center',
                   height: '100%',
-                },
-              })}
-            >
-              <Icon className="icon" />
-              <br />
-              <Typography variant="h6">{title}</Typography>
-              <Typography variant="body2">{description}</Typography>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                  p: 5,
+                  '& .icon': {
+                    color: theme.palette.secondary.main,
+                    mb: 2,
+                    backgroundColor: '#362C1C',
+                    p: 1,
+                    borderRadius: 1.5,
+                    fontSize: 35,
+                  },
+                  '& h6': {
+                    fontWeight: 800,
+                    mb: 1.5,
+                    lineHeight: 1.2,
+                  },
+                  [theme.breakpoints.down('md')]: {
+                    minHeight: 'auto',
+                    height: '100%',
+                  },
+                })}
+              >
+                <Icon className="icon" />
+                <br />
+                <Typography variant="h6">{title}</Typography>
+                <Typography variant="body2">{description}</Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Section>
   );
 };
