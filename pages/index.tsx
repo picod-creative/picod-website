@@ -3,6 +3,7 @@ import type { NextPageWithLayout } from '../src/@types';
 import Layout from '../src/components/common/Layout';
 import Hero from '../src/components/partials/index/Hero';
 import PortfolioSection from '../src/components/partials/index/PortfolioSection';
+import WhyUsSection from '../src/components/partials/index/WhyUsSection';
 import SectionNav, {
   sections,
 } from '../src/components/partials/index/SectionNav';
@@ -21,6 +22,10 @@ const Home: NextPageWithLayout = () => {
       />
       <PortfolioSection
         active={activeSection === 'portfolio'}
+        onEnter={setActiveSection}
+      />
+      <WhyUsSection
+        active={activeSection === 'whyus'}
         onEnter={setActiveSection}
       />
     </>
