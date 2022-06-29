@@ -32,12 +32,12 @@ export const sections: Section[] = [
 
 export interface SectionNavProps {
   activeSection: string;
-  setActiveSection: (section: string) => void;
+  onActiveSectionChange: (section: string) => void;
 }
 
 const SectionNav: FC<SectionNavProps> = ({
   activeSection,
-  setActiveSection,
+  onActiveSectionChange,
 }) => {
   const ref = createRef<HTMLDivElement>();
 
@@ -67,7 +67,7 @@ const SectionNav: FC<SectionNavProps> = ({
         <Tabs
           variant="fullWidth"
           value={activeSection}
-          onChange={(_, value) => setActiveSection(value)}
+          onChange={(_, value) => onActiveSectionChange(value)}
           centered
           sx={{
             '& .MuiTabs-indicator': {
