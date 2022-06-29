@@ -37,8 +37,8 @@ export interface WhyUsSectionProps {
 }
 
 const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
-  const isDesktop = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('md')
+  const isTabletAndUp = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.up('md')
   );
 
   return (
@@ -84,7 +84,7 @@ const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
           },
         })}
       >
-        <Grid container spacing={isDesktop ? 2 : 6.5}>
+        <Grid container spacing={!isTabletAndUp ? 2 : 6.5}>
           {services.map(({ id, title, description, icon: Icon }) => (
             <Grid key={id} item xs={12} sm={6} lg={4}>
               <Card
