@@ -41,7 +41,7 @@ const SectionNav: FC<SectionNavProps> = ({
 }) => {
   const ref = createRef<HTMLDivElement>();
 
-  const { setSectionNavHeight } = useDimensionContext();
+  const { setSectionNavHeight, navHeight } = useDimensionContext();
   const scrollTrigger = useScrollTrigger();
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const SectionNav: FC<SectionNavProps> = ({
     <Box
       sx={(theme) => ({
         position: 'sticky',
-        top: !scrollTrigger ? theme.typography.pxToRem(126) : 0,
+        top: !scrollTrigger ? theme.typography.pxToRem(navHeight) : 0,
         backgroundColor: '#0f0f0f',
         zIndex: theme.zIndex.drawer,
         transition: 'top 225ms cubic-bezier(0, 0, 0.2, 1) 0ms',
