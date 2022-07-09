@@ -433,7 +433,7 @@ const Hero: FC = () => {
         position: 'relative',
         zIndex: 1,
         [theme.breakpoints.up('md')]: {
-          minHeight: 929,
+          minHeight: 850,
         },
         '& > .hero-background': {
           position: 'absolute',
