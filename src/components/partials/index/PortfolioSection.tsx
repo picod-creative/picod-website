@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import {
+  Grid,
   Tab,
   Tabs,
   Theme,
@@ -10,6 +11,7 @@ import {
 import Section from './Section';
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../../common/TabPanel';
+import ProjectCard from '../../common/ProjectCard';
 
 const tabs = [
   {
@@ -31,6 +33,57 @@ const tabs = [
   {
     value: 'design',
     label: 'Design',
+  },
+];
+
+const projects = [
+  {
+    id: '1',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-1.png',
+  },
+  {
+    id: '2',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-2.png',
+  },
+  {
+    id: '3',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-3.png',
+  },
+  {
+    id: '4',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-4.png',
+  },
+  {
+    id: '5',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-5.png',
+  },
+  {
+    id: '6',
+    category: 'web',
+    title: 'Lorem ipsum',
+    shortDescription:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet.',
+    image: '/img/project-6.png',
   },
 ];
 
@@ -127,21 +180,41 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={currentTabIndex}
         onChangeIndex={setCurrentTabIndex}
+        animateHeight
       >
-        {tabs.map((tab, i) => (
-          <TabPanel
-            key={tab.value}
-            name="portfolio-category"
-            index={currentTabIndex}
-            value={i}
-            sx={{
-              pt: 8,
-              pb: 4,
-            }}
-          >
-            <Typography textAlign="center">{tab.label}</Typography>
-          </TabPanel>
-        ))}
+        {tabs.map((tab, i) => {
+          const projectList =
+            tab.value === 'all'
+              ? projects
+              : projects.filter(({ category }) => category === tab.value);
+
+          return (
+            <TabPanel
+              key={tab.value}
+              name="portfolio-category"
+              index={currentTabIndex}
+              value={i}
+              sx={{
+                pt: 8,
+                pb: 4,
+              }}
+            >
+              {!!projectList.length ? (
+                <Grid container spacing={5}>
+                  {projectList.map(({ id, image, shortDescription, title }) => (
+                    <Grid key={id} xs={12} md={6} lg={4} item>
+                      <ProjectCard {...{ image, shortDescription, title }} />
+                    </Grid>
+                  ))}
+                </Grid>
+              ) : (
+                <Typography align="center">
+                  Aucun projet pour le moment
+                </Typography>
+              )}
+            </TabPanel>
+          );
+        })}
       </SwipeableViews>
     </Section>
   );
