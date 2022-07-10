@@ -1,5 +1,11 @@
 import { FC } from 'react';
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
 
 export interface ProjectCardProps {
   title: string;
@@ -19,20 +25,22 @@ const ProjectCard: FC<ProjectCardProps> = ({
       boxShadow: 'none',
     }}
   >
-    <CardMedia
-      component="img"
-      image={image}
-      alt={shortDescription}
-      sx={{
-        aspectRatio: '16/9',
-      }}
-    />
-    <CardContent>
-      <Typography variant="h5" gutterBottom>
-        {title}
-      </Typography>
-      <Typography>{shortDescription}</Typography>
-    </CardContent>
+    <CardActionArea>
+      <CardMedia
+        component="img"
+        image={image}
+        alt={shortDescription}
+        sx={{
+          aspectRatio: '16/9',
+        }}
+      />
+      <CardContent>
+        <Typography variant="h5" gutterBottom>
+          {title}
+        </Typography>
+        <Typography>{shortDescription}</Typography>
+      </CardContent>
+    </CardActionArea>
   </Card>
 );
 

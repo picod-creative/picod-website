@@ -4,6 +4,7 @@ import {
   Card as MuiCard,
   useMediaQuery,
   Theme,
+  Button,
 } from '@mui/material';
 
 interface CardProps extends MuiCardProps {
@@ -81,6 +82,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <MuiCard
+      component={Button}
       ref={cardRef}
       tabIndex={0}
       {...props}
@@ -90,6 +92,8 @@ const Card: React.FC<CardProps> = ({
         p: 2,
         zIndex: 1,
         borderRadius,
+        textTransform: 'none',
+        textAlign: 'left',
         '& .border': {
           display: 'block',
           position: 'absolute',
