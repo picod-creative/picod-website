@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { GetStaticProps } from 'next';
 import type { NextPageWithLayout } from '../src/@types';
 import Layout from '../src/components/common/Layout';
 import Hero from '../src/components/partials/index/Hero';
@@ -8,6 +9,7 @@ import SectionNav, {
   sections,
 } from '../src/components/partials/index/SectionNav';
 import ServiceSection from '../src/components/partials/index/ServiceSection';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Home: NextPageWithLayout = () => {
   const [activeSection, setActiveSection] = useState<string>(sections[0].id);
@@ -33,6 +35,12 @@ const Home: NextPageWithLayout = () => {
     </>
   );
 };
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'fr', ['common'])),
+  },
+});
 
 Home.getLayout = (page) => {
   return (

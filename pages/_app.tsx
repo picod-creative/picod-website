@@ -7,6 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../src/theme';
 import { CssBaseline } from '@mui/material';
 import Head from 'next/head';
+import { appWithTranslation } from 'next-i18next';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -40,4 +41,4 @@ function MyApp({
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
