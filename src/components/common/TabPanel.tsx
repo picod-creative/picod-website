@@ -5,20 +5,12 @@ export interface TabPanelProps extends BoxProps {
   dir?: string;
   name: string;
   index: number;
-  value: number;
 }
 
-const TabPanel: FC<TabPanelProps> = ({
-  name,
-  index,
-  value,
-  children,
-  ...props
-}) => {
+const TabPanel: FC<TabPanelProps> = ({ name, index, children, ...props }) => {
   return (
     <Box
       role="tabpanel"
-      hidden={value !== index}
       id={`${name}-tabpanel-${index}`}
       aria-labelledby={`${name}-tab-${index}`}
       {...props}

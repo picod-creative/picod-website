@@ -192,8 +192,7 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
             <TabPanel
               key={tab.value}
               name="portfolio-category"
-              index={currentTabIndex}
-              value={i}
+              index={i}
               sx={{
                 pt: 8,
                 pb: 4,
