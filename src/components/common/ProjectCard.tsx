@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import {
-  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -45,26 +44,27 @@ const ProjectCard: FC<ProjectCardProps> = ({
           <Typography variant="h5" gutterBottom sx={{ fontWeight: 500 }}>
             {title}
           </Typography>
-          <Typography sx={{ fontWeight: 300 }}>{shortDescription}</Typography>
-          <Stack direction="row" justifyContent="flex-end">
-            <Button>
-              <Typography
-                color="secondary"
-                sx={(theme) => ({
-                  mr: 2,
-                  textTransform: 'none',
-                  fontSize: theme.typography.pxToRem(18),
-                })}
-              >
-                Visiter
-              </Typography>
-              <Arrow
-                direction="right"
-                color={theme.palette.secondary.main}
-                thickness={4}
-                size={80}
-              />
-            </Button>
+          <Typography sx={{ fontWeight: 300, mb: 2 }}>
+            {shortDescription}
+          </Typography>
+          <Stack direction="row" justifyContent="flex-end" alignItems="center">
+            <Typography
+              component="span"
+              color="secondary"
+              sx={(theme) => ({
+                mr: 2,
+                textTransform: 'none',
+                fontSize: theme.typography.pxToRem(18),
+              })}
+            >
+              Visiter
+            </Typography>
+            <Arrow
+              direction="right"
+              color={theme.palette.secondary.main}
+              thickness={4}
+              size={80}
+            />
           </Stack>
         </CardContent>
       </CardActionArea>
