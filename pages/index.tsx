@@ -17,9 +17,7 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Hero />
-      <SectionNav
-        {...{ activeSection, onActiveSectionChange: setActiveSection }}
-      />
+      <SectionNav activeSection={activeSection} />
       <ServiceSection
         active={activeSection === 'services'}
         onEnter={setActiveSection}
@@ -29,7 +27,7 @@ const Home: NextPageWithLayout = () => {
         onEnter={setActiveSection}
       />
       <WhyUsSection
-        active={activeSection === 'whyus'}
+        active={activeSection === 'whyUs'}
         onEnter={setActiveSection}
       />
     </>

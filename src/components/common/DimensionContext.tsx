@@ -5,6 +5,8 @@ export type DimensionContext = {
   setNavHeight: (height: number) => void;
   sectionNavHeight: number;
   setSectionNavHeight: (height: number) => void;
+  hiddenNavbar: boolean;
+  setHiddenNavbar: (hidden: boolean) => void;
 };
 
 const dimensionContext = createContext<DimensionContext>({
@@ -12,15 +14,25 @@ const dimensionContext = createContext<DimensionContext>({
   setNavHeight: () => {},
   sectionNavHeight: 0,
   setSectionNavHeight: () => {},
+  hiddenNavbar: false,
+  setHiddenNavbar: () => {},
 });
 
 export const DimensionContextProvider: FC = ({ children }) => {
   const [navHeight, setNavHeight] = useState<number>(0);
   const [sectionNavHeight, setSectionNavHeight] = useState<number>(0);
+  const [hiddenNavbar, setHiddenNavbar] = useState<boolean>(false);
 
   return (
     <dimensionContext.Provider
-      value={{ navHeight, setNavHeight, sectionNavHeight, setSectionNavHeight }}
+      value={{
+        navHeight,
+        setNavHeight,
+        sectionNavHeight,
+        setSectionNavHeight,
+        hiddenNavbar,
+        setHiddenNavbar,
+      }}
     >
       {children}
     </dimensionContext.Provider>

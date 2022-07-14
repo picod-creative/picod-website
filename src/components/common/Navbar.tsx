@@ -26,7 +26,7 @@ const Navbar: FC = () => {
   const appBarRef = createRef<HTMLDivElement>();
   const [openDrawer, setOpenDrawer] = useState(false);
 
-  const { navHeight, setNavHeight } = useDimensionContext();
+  const { navHeight, setNavHeight, setHiddenNavbar } = useDimensionContext();
   const theme = useTheme();
   const addBackground = useScrollTrigger({
     threshold: 200,
@@ -53,7 +53,10 @@ const Navbar: FC = () => {
 
   return (
     <>
-      <HideOnScroll>
+      <HideOnScroll
+        onHide={() => setHiddenNavbar(true)}
+        onShow={() => setHiddenNavbar(false)}
+      >
         <AppBar
           ref={appBarRef}
           elevation={0}
