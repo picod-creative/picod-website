@@ -44,17 +44,24 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
         filter: 'grayscale(1)',
         transition: 'filter 0.25s ease-in-out',
       },
-      '&:hover .contentWrapper': {
-        filter: 'grayscale(0)',
+      '&:hover': {
+        '& .contentWrapper': {
+          filter: 'grayscale(0)',
+        },
+        '& .brand-list-title': {
+          color: theme.palette.secondary.main,
+        },
       },
     })}
   >
     <Typography
       align="center"
       variant="h5"
+      className="brand-list-title"
       sx={(theme) => ({
         fontWeight: 800,
         mb: 7,
+        transition: 'color 0.25s ease-in-out',
         [theme.breakpoints.down('md')]: {
           fontSize: theme.typography.pxToRem(18),
           mb: 2,
