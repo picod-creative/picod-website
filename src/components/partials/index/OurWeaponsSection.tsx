@@ -36,12 +36,14 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
     sx={{
       width: '100%',
       py: 6,
-      filter: 'grayscale(1)',
-      transition: 'filter 0.25s ease-in-out',
-      '&:hover': {
+      '& .contentWrapper': {
+        width: '100%',
+        filter: 'grayscale(1)',
+        transition: 'filter 0.25s ease-in-out',
+      },
+      '&:hover .contentWrapper': {
         filter: 'grayscale(0)',
       },
-      '& .contentWrapper': { width: '100%' },
     }}
   >
     <Typography align="center" variant="h5" sx={{ fontWeight: 800, mb: 7 }}>
