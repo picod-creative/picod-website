@@ -1,7 +1,14 @@
-import { createRef, FC, useEffect } from 'react';
+import {
+  createRef,
+  FC,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+} from 'react';
 import type { Section } from '../../../@types';
 import { Container, Tab, Tabs, Box, useScrollTrigger } from '@mui/material';
 import { useDimensionContext } from '../../common/DimensionContext';
+import { scrollTo } from '../../../utils/window';
 
 export const sections: Section[] = [
   {
@@ -32,17 +39,30 @@ export const sections: Section[] = [
 
 export interface SectionNavProps {
   activeSection: string;
-  onActiveSectionChange: (section: string) => void;
 }
 
-const SectionNav: FC<SectionNavProps> = ({
-  activeSection,
-  onActiveSectionChange,
-}) => {
+const SectionNav: FC<SectionNavProps> = ({ activeSection }) => {
   const ref = createRef<HTMLDivElement>();
 
-  const { setSectionNavHeight, navHeight } = useDimensionContext();
+  const { sectionNavHeight, setSectionNavHeight, navHeight, hiddenNavbar } =
+    useDimensionContext();
   const scrollTrigger = useScrollTrigger();
+
+  const onTabClick = useCallback<MouseEventHandler<HTMLDivElement>>(
+    (e) => {
+      e.preventDefault();
+      const target = e.currentTarget,
+        sectionTarget = target.dataset.target,
+        targetElement = sectionTarget && document.getElementById(sectionTarget);
+
+      if (targetElement) {
+        scrollTo({
+          top: targetElement.offsetTop - navHeight - sectionNavHeight,
+        });
+      }
+    },
+    [navHeight, sectionNavHeight]
+  );
 
   useEffect(() => {
     if (ref.current) {
@@ -67,7 +87,6 @@ const SectionNav: FC<SectionNavProps> = ({
         <Tabs
           variant="fullWidth"
           value={activeSection}
-          onChange={(_, value) => onActiveSectionChange(value)}
           centered
           sx={{
             '& .MuiTabs-indicator': {
@@ -80,6 +99,7 @@ const SectionNav: FC<SectionNavProps> = ({
               key={id}
               label={title}
               value={id}
+              data-target={id}
               sx={(theme) => ({
                 textTransform: 'none',
                 p: 4,
@@ -88,6 +108,7 @@ const SectionNav: FC<SectionNavProps> = ({
                   color: 'text.primary',
                 },
               })}
+              onClick={onTabClick}
             />
           ))}
         </Tabs>
