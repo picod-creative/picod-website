@@ -10,12 +10,22 @@ import {
 interface CardProps extends MuiCardProps {
   borderRadius?: number;
   borderWidth?: number;
+  background?: string;
+  backgroundImage?: string;
+  backgroundColor?: string;
+  backgroundSize?: string;
+  backgroundPosition?: string;
 }
 
 const Card: React.FC<CardProps> = ({
   children,
   borderRadius = 2.5,
   borderWidth = 1,
+  background = 'radial-gradient(150% 150% at 0% 100%, #1F1F1F 0%, #111111 100%)',
+  backgroundImage,
+  backgroundColor,
+  backgroundSize,
+  backgroundPosition,
   ...props
 }) => {
   const cardRef = createRef<HTMLDivElement>();
@@ -121,8 +131,13 @@ const Card: React.FC<CardProps> = ({
           bottom: borderWidth,
           borderRadius,
           zIndex: -1,
-          background:
-            'radial-gradient(150% 150% at 0% 100%, #1F1F1F 0%, #111111 100%)',
+          ...{
+            background,
+            backgroundImage,
+            backgroundColor,
+            backgroundSize,
+            backgroundPosition,
+          },
         },
         ...((typeof props.sx as any) === 'function'
           ? (props.sx as any)(theme)
