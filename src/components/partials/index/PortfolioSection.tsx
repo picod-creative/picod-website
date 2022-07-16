@@ -140,7 +140,6 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
         centered={!mobile}
         variant={mobile ? 'scrollable' : 'standard'}
         scrollButtons="auto"
-        allowScrollButtonsMobile
         textColor="secondary"
         sx={(theme) => ({
           mt: 7.5,
@@ -193,15 +192,17 @@ const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
               key={tab.value}
               name="portfolio-category"
               index={i}
-              sx={{
+              sx={(theme) => ({
                 pt: 8,
-                pb: 4,
-              }}
+                [theme.breakpoints.down('md')]: {
+                  pt: 2,
+                },
+              })}
             >
               {!!projectList.length ? (
-                <Grid container spacing={5}>
+                <Grid container spacing={{ xs: 1, md: 5 }}>
                   {projectList.map(({ id, image, shortDescription, title }) => (
-                    <Grid key={id} xs={12} md={6} lg={4} item>
+                    <Grid key={id} xs={6} lg={4} item>
                       <ProjectCard {...{ image, shortDescription, title }} />
                     </Grid>
                   ))}
