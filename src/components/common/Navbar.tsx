@@ -21,6 +21,7 @@ import DribbbleIcon from '../icons/Dribbble';
 import BehanceIcon from '../icons/Behance';
 import { useDimensionContext } from './DimensionContext';
 import HideOnScroll from './HideOnScroll';
+import { sections } from '../../constants/config';
 
 const Navbar: FC = () => {
   const appBarRef = createRef<HTMLDivElement>();
@@ -147,13 +148,7 @@ const Navbar: FC = () => {
             />
           </IconButton>
           <Stack direction="column" spacing={4} sx={{ height: '100%', mt: 6 }}>
-            {[
-              { id: 'services', label: 'Services' },
-              { id: 'portfolio', label: 'Portfolio' },
-              { id: 'whyUs', label: 'Pourquoi nous?' },
-              { id: 'ourWeapons', label: 'Nos armes' },
-              { id: 'ourTeams', label: 'Nos équipes' },
-            ].map(({ id, label }) => (
+            {sections.map(({ id, title }) => (
               <Link key={id} href={`#${id}`} passHref>
                 <MuiLink
                   onClick={() => setOpenDrawer(false)}
@@ -188,7 +183,7 @@ const Navbar: FC = () => {
                     },
                   })}
                 >
-                  {label}
+                  {title}
                 </MuiLink>
               </Link>
             ))}

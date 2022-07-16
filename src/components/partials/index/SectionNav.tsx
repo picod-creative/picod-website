@@ -5,37 +5,10 @@ import {
   useCallback,
   useEffect,
 } from 'react';
-import type { Section } from '../../../@types';
 import { Container, Tab, Tabs, Box, useScrollTrigger } from '@mui/material';
 import { useDimensionContext } from '../../common/DimensionContext';
 import { scrollTo } from '../../../utils/window';
-
-export const sections: Section[] = [
-  {
-    id: 'services',
-    title: 'Services',
-  },
-  {
-    id: 'portfolio',
-    title: 'Portfolio',
-  },
-  {
-    id: 'whyUs',
-    title: 'Pourquoi nous',
-  },
-  {
-    id: 'ourWeapons',
-    title: 'Nos armes',
-  },
-  {
-    id: 'ourTeams',
-    title: 'Nos équipes',
-  },
-  {
-    id: 'testimonial',
-    title: 'Témoignages',
-  },
-];
+import { sections } from '../../../constants/config';
 
 export interface SectionNavProps {
   activeSection: string;
