@@ -4,6 +4,7 @@ import {
   Stack,
   SvgIconProps,
   Theme,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from '@mui/material';
@@ -26,7 +27,7 @@ import MongoDBIcon from '../../icons/MongoDB';
 
 interface BrandListCardProps {
   title: string;
-  icons: FC<SvgIconProps>[];
+  icons: { icon: FC<SvgIconProps>; title?: string }[];
 }
 
 const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
@@ -53,9 +54,17 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
         fontSize: theme.typography.pxToRem(56),
       })}
     >
-      {icons.map((IconComponent, index) => (
-        <IconComponent key={index} fontSize="inherit" />
-      ))}
+      {icons.map(({ icon: IconComponent, title }, index) =>
+        !!title ? (
+          <Tooltip key={index} title={title} arrow>
+            <div style={{ display: 'flex' }}>
+              <IconComponent fontSize="inherit" />
+            </div>
+          </Tooltip>
+        ) : (
+          <IconComponent key={index} fontSize="inherit" />
+        )
+      )}
     </Stack>
   </Card>
 );
@@ -89,25 +98,43 @@ const OurWeaponsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
         <Grid item xs={12} md={6}>
           <BrandListCard
             title="Langages"
-            icons={[HTML5Icon, CSS3Icon, JSIcon, DartIcon]}
+            icons={[
+              { icon: HTML5Icon, title: 'HTML5' },
+              { icon: CSS3Icon, title: 'CSS3' },
+              { icon: JSIcon, title: 'JavaScript' },
+              { icon: DartIcon, title: 'Dart' },
+            ]}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandListCard
             title="Logiciels graphiques"
-            icons={[FigmaIcon, AdobeXDIcon, BlenderIcon, AdobeIcon]}
+            icons={[
+              { icon: FigmaIcon, title: 'Figma' },
+              { icon: AdobeXDIcon, title: 'Adobe XD' },
+              { icon: BlenderIcon, title: 'Blender' },
+              { icon: AdobeIcon, title: 'Suite Adobe' },
+            ]}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandListCard
             title="Framework"
-            icons={[ReactIcon, FlutterIcon, NodeJSExpressIcon, SymfonyIcon]}
+            icons={[
+              { icon: ReactIcon, title: 'ReactJS' },
+              { icon: FlutterIcon, title: 'Flutter' },
+              { icon: NodeJSExpressIcon, title: 'Node JS' },
+              { icon: SymfonyIcon, title: 'Symfony' },
+            ]}
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <BrandListCard
             title="Bases de données"
-            icons={[MySQLIcon, MongoDBIcon]}
+            icons={[
+              { icon: MySQLIcon, title: 'MySQL' },
+              { icon: MongoDBIcon, title: 'MongoDB' },
+            ]}
           />
         </Grid>
       </Grid>
