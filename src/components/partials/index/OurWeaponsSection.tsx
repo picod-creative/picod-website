@@ -33,9 +33,12 @@ interface BrandListCardProps {
 const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
   <Card
     borderRadius={6.5}
-    sx={{
+    sx={(theme) => ({
       width: '100%',
       py: 6,
+      [theme.breakpoints.down('md')]: {
+        py: 3,
+      },
       '& .contentWrapper': {
         width: '100%',
         filter: 'grayscale(1)',
@@ -44,9 +47,20 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
       '&:hover .contentWrapper': {
         filter: 'grayscale(0)',
       },
-    }}
+    })}
   >
-    <Typography align="center" variant="h5" sx={{ fontWeight: 800, mb: 7 }}>
+    <Typography
+      align="center"
+      variant="h5"
+      sx={(theme) => ({
+        fontWeight: 800,
+        mb: 7,
+        [theme.breakpoints.down('md')]: {
+          fontSize: theme.typography.pxToRem(18),
+          mb: 2,
+        },
+      })}
+    >
       {title}
     </Typography>
     <Stack
@@ -54,6 +68,9 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
       justifyContent="space-evenly"
       sx={(theme) => ({
         fontSize: theme.typography.pxToRem(56),
+        [theme.breakpoints.down('md')]: {
+          fontSize: theme.typography.pxToRem(30),
+        },
       })}
     >
       {icons.map(({ icon: IconComponent, title }, index) =>
@@ -89,14 +106,21 @@ const OurWeaponsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
       active={active}
       onEnter={() => onEnter?.('ourWeapons')}
     >
-      <Typography sx={{ mb: 10 }}>
+      <Typography
+        sx={(theme) => ({
+          mb: 10,
+          [theme.breakpoints.down('md')]: {
+            mb: 4,
+          },
+        })}
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
         ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
         vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
         molestie a.
       </Typography>
 
-      <Grid container spacing={5}>
+      <Grid container spacing={{ lg: 5, xs: 2 }}>
         <Grid item xs={12} md={6}>
           <BrandListCard
             title="Langages"
