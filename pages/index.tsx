@@ -10,6 +10,7 @@ import SectionNav, {
 } from '../src/components/partials/index/SectionNav';
 import ServiceSection from '../src/components/partials/index/ServiceSection';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import OurWeaponsSection from '../src/components/partials/index/OurWeaponsSection';
 
 const Home: NextPageWithLayout = () => {
   const [activeSection, setActiveSection] = useState<string>(sections[0].id);
@@ -28,6 +29,10 @@ const Home: NextPageWithLayout = () => {
       />
       <WhyUsSection
         active={activeSection === 'whyUs'}
+        onEnter={setActiveSection}
+      />
+      <OurWeaponsSection
+        active={activeSection === 'ourWeapons'}
         onEnter={setActiveSection}
       />
     </>
