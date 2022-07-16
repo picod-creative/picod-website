@@ -63,7 +63,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
               direction="right"
               color={theme.palette.secondary.main}
               thickness={4}
-              size={80}
+              size={{ lg: 80, md: 60, xs: 40, sm: 50 }}
             />
           </Stack>
         </CardContent>
