@@ -9,6 +9,7 @@ import SectionNav from '../src/components/partials/index/SectionNav';
 import ServiceSection from '../src/components/partials/index/ServiceSection';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import OurWeaponsSection from '../src/components/partials/index/OurWeaponsSection';
+import OurTeamsSection from '../src/components/partials/index/OurTeamsSection';
 import { sections } from '../src/constants/config';
 
 const Home: NextPageWithLayout = () => {
@@ -32,6 +33,10 @@ const Home: NextPageWithLayout = () => {
       />
       <OurWeaponsSection
         active={activeSection === 'ourWeapons'}
+        onEnter={setActiveSection}
+      />
+      <OurTeamsSection
+        active={activeSection === 'ourTeams'}
         onEnter={setActiveSection}
       />
     </>
