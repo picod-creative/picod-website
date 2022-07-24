@@ -166,7 +166,7 @@ const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
       <Grid
         container
         spacing={{ lg: 5, xs: 2 }}
-        justifyContent="space-between"
+        justifyContent="space-evenly"
         alignItems="center"
       >
         {teamMemberProfileList.map((teamMemberProfile, index) => (
