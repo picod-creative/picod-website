@@ -18,8 +18,8 @@ export const sections: Section[] = [
     title: 'Nos armes',
   },
   {
-    id: 'ourTeams',
-    title: 'Nos équipes',
+    id: 'ourTeam',
+    title: 'Notre équipe',
   },
   {
     id: 'testimonial',
