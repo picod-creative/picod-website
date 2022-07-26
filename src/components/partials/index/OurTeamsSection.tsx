@@ -104,7 +104,7 @@ const TeamMemberProfileCard: FC<TeamMemberProfileCardProps> = ({
   image,
   socialMedia,
 }) => (
-  <Stack spacing={2} alignItems="center">
+  <Stack alignItems="center">
     <Avatar alt={name} src={image} sx={{ width: 144, height: 144, mb: 3 }} />
     <Typography fontWeight={'bolder'} fontSize={18}>
       {name}
