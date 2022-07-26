@@ -31,6 +31,7 @@ export type SocialMedia = {
 };
 
 export type TeamMemberProfile = {
+  id: string;
   name: string;
   role: string;
   image: string;
