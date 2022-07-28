@@ -149,7 +149,7 @@ const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
       active={active}
       onEnter={() => onEnter?.('ourTeams')}
     >
-      <Grid container justifyContent="space-evenly" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center">
         {teamMemberProfileList.map((teamMemberProfile, index) => (
           <Grid key={index} mt={5} item xs={12} md={3} alignItems="center">
             <TeamMemberProfileCard {...teamMemberProfile} />
