@@ -22,3 +22,18 @@ export type Service = {
   icon: ElementType<SvgIconProps>;
   description: string;
 };
+
+export type SocialMedia = {
+  facebook?: string;
+  discord?: string;
+  linkedin?: string;
+  behance?: string;
+};
+
+export type TeamMemberProfile = {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  socialMedia: SocialMedia;
+};
