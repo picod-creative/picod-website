@@ -143,11 +143,11 @@ export interface ServiceSectionProps {
 const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
   return (
     <Section
-      id="ourTeams"
-      prefix="Nos"
-      title="Equipes"
+      id="ourTeam"
+      prefix="Notre"
+      title="Équipe"
       active={active}
-      onEnter={() => onEnter?.('ourTeams')}
+      onEnter={() => onEnter?.('ourTeam')}
     >
       <Grid container justifyContent="center" alignItems="center">
         {teamMemberProfileList.map((teamMemberProfile, index) => (
