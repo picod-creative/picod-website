@@ -5,19 +5,12 @@ import { Avatar, Box, Stack, Typography } from '@mui/material';
 import Section from './Section';
 import Card from '../../common/Card';
 import NextSlider from '../../common/NextSlider';
+import useResponsiveStyleValue from '../../../hooks/useResponsiveStyleValue';
 
 export interface ServiceSectionProps {
   active?: boolean;
   onEnter?: (value: string) => void;
 }
-
-type TestimonialCardProps = {
-  id: string;
-  name: string;
-  role: string;
-  image: string;
-  testimonial: string;
-};
 
 const testimonialsList = [
   {
@@ -53,6 +46,14 @@ const testimonialsList = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non molestie a.',
   },
 ];
+
+type TestimonialCardProps = {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  testimonial: string;
+};
 
 const TestimonialCard: FC<TestimonialCardProps> = ({
   id,
@@ -107,14 +108,41 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
 );
 
 const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
+  const centerPadding = useResponsiveStyleValue({
+    xs: '30px',
+    md: '210px',
+    lg: '292px',
+  });
+
   return (
     <Section
       id="testimonials"
       prefix="Ici nos"
-      title="Testimonial"
+      title="Témoignages"
       active={active}
       onEnter={() => onEnter?.('ourTeam')}
       key="testimonials"
+      sx={(theme) => ({
+        '& .testimonialSlide': {
+          '&::before, &::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            width: centerPadding,
+            background: `linear-gradient(to right, ${theme.palette.background.default} 10%, ${theme.palette.background.default}99 70%, ${theme.palette.background.default}00 100%)`,
+            zIndex: theme.zIndex.tooltip,
+            pointerEvents: 'none',
+          },
+          '&::before': {
+            left: 0,
+          },
+          '&::after': {
+            right: -1,
+            transform: 'rotate(180deg)',
+          },
+        },
+      })}
     >
       <Typography
         sx={(theme) => ({
@@ -129,18 +157,17 @@ const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
         vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
         molestie a.
       </Typography>
-      {/* <Grid container justifyContent="center" alignItems="center"></Grid> */}
 
       <NextSlider
-        className="center"
+        className="testimonialSlide"
         centerMode={true}
         arrows={false}
-        centerPadding={'292px'}
+        centerPadding={centerPadding}
         slidesToShow={1}
         speed={500}
       >
         {testimonialsList.map((testimonial, index) => (
-          <Box px={4}>
+          <Box key={index} px={4}>
             <TestimonialCard key={index} {...testimonial} />
           </Box>
         ))}
