@@ -144,8 +144,8 @@ const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
   return (
     <Section
       id="ourTeam"
-      prefix="Notre"
-      title="Équipe"
+      prefix="Nos"
+      title="Équipes"
       active={active}
       onEnter={() => onEnter?.('ourTeam')}
     >
