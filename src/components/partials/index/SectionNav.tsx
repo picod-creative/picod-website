@@ -1,10 +1,4 @@
-import {
-  createRef,
-  FC,
-  MouseEventHandler,
-  useCallback,
-  useEffect,
-} from 'react';
+import { FC, MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 import { Container, Tab, Tabs, Box, useScrollTrigger } from '@mui/material';
 import { useDimensionContext } from '../../common/DimensionContext';
 import { scrollTo } from '../../../utils/window';
@@ -15,7 +9,7 @@ export interface SectionNavProps {
 }
 
 const SectionNav: FC<SectionNavProps> = ({ activeSection }) => {
-  const ref = createRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const { sectionNavHeight, setSectionNavHeight, navHeight, hiddenNavbar } =
     useDimensionContext();

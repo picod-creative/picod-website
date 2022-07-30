@@ -1,9 +1,4 @@
-import {
-  createRef,
-  forwardRef,
-  HTMLAttributes,
-  useImperativeHandle,
-} from 'react';
+import { forwardRef, HTMLAttributes, useImperativeHandle, useRef } from 'react';
 import { Container, ContainerProps, Typography } from '@mui/material';
 import InView from '../../common/InView';
 
@@ -15,11 +10,14 @@ export type SectionProps = HTMLAttributes<HTMLElement> &
     onEnter?: () => void;
   };
 
-const Section = forwardRef<HTMLElement, SectionProps>(
+const Section = forwardRef<HTMLElement | null, SectionProps>(
   ({ prefix, title, children, active, onEnter, ...props }, ref) => {
-    const sectionRef = createRef<HTMLElement>();
+    const sectionRef = useRef<HTMLElement>(null);
 
-    useImperativeHandle(ref, () => sectionRef.current!);
+    useImperativeHandle<HTMLElement | null, HTMLElement | null>(
+      ref,
+      () => sectionRef.current
+    );
 
     return (
       <InView targetRef={sectionRef} onEnter={onEnter} threshold={160}>
