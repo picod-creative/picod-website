@@ -143,8 +143,8 @@ export interface ServiceSectionProps {
 const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
   return (
     <Section
-      id="ourTeam"
-      prefix="Nos"
+      id="ourTeams"
+      prefix="Notre"
       title="Équipes"
       active={active}
       onEnter={() => onEnter?.('ourTeam')}
