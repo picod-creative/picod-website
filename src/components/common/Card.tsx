@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   CardProps as MuiCardProps,
   Card as MuiCard,
@@ -28,8 +28,8 @@ const Card: React.FC<CardProps> = ({
   backgroundPosition,
   ...props
 }) => {
-  const cardRef = createRef<HTMLDivElement>();
-  const borderRef = createRef<HTMLDivElement>();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const borderRef = useRef<HTMLDivElement>(null);
 
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')
@@ -88,7 +88,7 @@ const Card: React.FC<CardProps> = ({
       onMouseMove && document.removeEventListener('mousemove', onMouseMove);
       onScroll = onMouseMove = null;
     };
-  }, [borderRadius, borderRef, cardRef, isMobile]);
+  }, [borderRadius, borderRef, isMobile]);
 
   return (
     <MuiCard
