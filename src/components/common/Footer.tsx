@@ -151,6 +151,7 @@ const Footer: FC = () => {
             { id: 'portfolio', text: 'Portfolio' },
             { id: 'whyUs', text: 'Pourquoi nous?' },
             { id: 'ourWeapons', text: 'Nos armes' },
+            { id: 'ourTeams', text: 'Nos équipes' },
             { id: 'testimonial', text: 'Testimonial' },
           ].map(({ id, text }) => (
             <MuiLink
