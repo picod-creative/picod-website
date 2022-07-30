@@ -13,6 +13,7 @@ import PicodIcon from '../icons/Picod';
 import FacebookIcon from '../icons/Facebook';
 import DribbbleIcon from '../icons/Dribbble';
 import BehanceIcon from '../icons/Behance';
+import { sections } from '../../constants/config';
 
 const Footer: FC = () => {
   const isSmall = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
@@ -146,21 +147,14 @@ const Footer: FC = () => {
             },
           })}
         >
-          {[
-            { id: 'services', text: 'Services' },
-            { id: 'portfolio', text: 'Portfolio' },
-            { id: 'whyUs', text: 'Pourquoi nous?' },
-            { id: 'ourWeapons', text: 'Nos armes' },
-            { id: 'ourTeams', text: 'Notre équipes' },
-            { id: 'testimonials', text: 'Testimonial' },
-          ].map(({ id, text }) => (
+          {sections.map(({ id, title }) => (
             <MuiLink
               key={id}
               href={`#${id}`}
               color="text.primary"
               underline="hover"
             >
-              {text}
+              {title}
             </MuiLink>
           ))}
         </Stack>

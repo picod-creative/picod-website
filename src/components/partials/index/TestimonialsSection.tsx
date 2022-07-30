@@ -120,8 +120,7 @@ const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
       prefix="Ici nos"
       title="Témoignages"
       active={active}
-      onEnter={() => onEnter?.('ourTeam')}
-      key="testimonials"
+      onEnter={() => onEnter?.('testimonials')}
       sx={(theme) => ({
         '& .testimonialSlide': {
           '&::before, &::after': {

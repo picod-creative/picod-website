@@ -22,7 +22,7 @@ export const sections: Section[] = [
     title: 'Notre équipe',
   },
   {
-    id: 'testimonial',
+    id: 'testimonials',
     title: 'Témoignages',
   },
 ];

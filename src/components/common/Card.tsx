@@ -1,4 +1,4 @@
-import React, { createRef, memo, useEffect } from 'react';
+import React, { createRef, useEffect } from 'react';
 import {
   CardProps as MuiCardProps,
   Card as MuiCard,
@@ -83,7 +83,6 @@ const Card: React.FC<CardProps> = ({
     }
 
     return () => {
-      console.log('cleanup...');
       // Cleanup all event listeners on unmount
       onScroll && document.removeEventListener('scroll', onScroll);
       onMouseMove && document.removeEventListener('mousemove', onMouseMove);
@@ -151,4 +150,4 @@ const Card: React.FC<CardProps> = ({
   );
 };
 
-export default memo(Card);
+export default Card;
