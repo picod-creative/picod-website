@@ -1,4 +1,4 @@
-import { createRef, FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Twitter as TwitterIcon } from '@mui/icons-material';
 import {
   AppBar,
@@ -24,7 +24,7 @@ import HideOnScroll from './HideOnScroll';
 import { sections } from '../../constants/config';
 
 const Navbar: FC = () => {
-  const appBarRef = createRef<HTMLDivElement>();
+  const appBarRef = useRef<HTMLDivElement>(null);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const { navHeight, setNavHeight, setHiddenNavbar } = useDimensionContext();
@@ -50,7 +50,7 @@ const Navbar: FC = () => {
     window.addEventListener('resize', onResize);
 
     return () => window.removeEventListener('resize', onResize);
-  }, [appBarRef, navHeight, setNavHeight]);
+  }, [navHeight, setNavHeight]);
 
   return (
     <>

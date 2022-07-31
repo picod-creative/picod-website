@@ -10,6 +10,7 @@ import ServiceSection from '../src/components/partials/index/ServiceSection';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import OurWeaponsSection from '../src/components/partials/index/OurWeaponsSection';
 import OurTeamSection from '../src/components/partials/index/OurTeamSection';
+import TestimonialsSection from '../src/components/partials/index/TestimonialsSection';
 import { sections } from '../src/constants/config';
 
 const Home: NextPageWithLayout = () => {
@@ -36,7 +37,11 @@ const Home: NextPageWithLayout = () => {
         onEnter={setActiveSection}
       />
       <OurTeamSection
-        active={activeSection === 'ourTeam'}
+        active={activeSection === 'ourTeams'}
+        onEnter={setActiveSection}
+      />
+      <TestimonialsSection
+        active={activeSection === 'testimonials'}
         onEnter={setActiveSection}
       />
     </>
