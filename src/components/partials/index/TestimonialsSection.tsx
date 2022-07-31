@@ -163,7 +163,9 @@ const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
         arrows={false}
         centerPadding={centerPadding}
         slidesToShow={1}
-        speed={500}
+        autoplay
+        autoplaySpeed={20000}
+        speed={2500}
       >
         {testimonialsList.map((testimonial, index) => (
           <Box key={index} px={4}>
