@@ -105,7 +105,16 @@ const TeamMemberProfileCard: FC<TeamMemberProfileCardProps> = ({
   socialMedia,
 }) => (
   <Stack alignItems="center">
-    <Avatar alt={name} src={image} sx={{ width: 144, height: 144, mb: 3 }} />
+    <Avatar
+      alt={name}
+      src={image}
+      sx={(theme) => ({
+        width: 144,
+        height: 144,
+        mb: 3,
+        [theme.breakpoints.down('md')]: { width: 110, height: 110 },
+      })}
+    />
     <Typography fontWeight={'bolder'} fontSize={18}>
       {name}
     </Typography>
@@ -151,7 +160,7 @@ const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
     >
       <Grid container justifyContent="center" alignItems="center">
         {teamMemberProfileList.map((teamMemberProfile, index) => (
-          <Grid key={index} mt={5} item xs={12} md={3} alignItems="center">
+          <Grid key={index} mt={5} item xs={6} md={3} alignItems="center">
             <TeamMemberProfileCard {...teamMemberProfile} />
           </Grid>
         ))}

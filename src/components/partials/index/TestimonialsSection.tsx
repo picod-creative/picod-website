@@ -66,13 +66,19 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
     <Avatar
       alt={name}
       src={image}
-      sx={{ width: 144, height: 144, mb: -12, zIndex: 2 }}
+      sx={(theme) => ({
+        width: 144,
+        height: 144,
+        mb: -12,
+        zIndex: 2,
+        [theme.breakpoints.down('md')]: { width: 110, height: 110 },
+      })}
     />
     <Card
       borderRadius={6.5}
-      sx={(theme) => ({
+      sx={{
         width: '100%',
-        pt: 8,
+        pt: 9,
         pb: 3,
         mt: 5,
         '& .contentWrapper': {
@@ -81,26 +87,37 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
           alignItems: 'center',
           overflow: 'visible',
         },
-      })}
+      }}
     >
       <Typography
         align="center"
-        sx={{ fontWeight: 'bolder', fontSize: 18, mb: 0.625 }}
+        sx={(theme) => ({
+          fontWeight: 'bolder',
+          fontSize: `${theme.typography.pxToRem(18)} !important`,
+        })}
       >
         {name}
       </Typography>
       <Typography
         align="center"
         color="secondary"
-        sx={{
+        sx={(theme) => ({
           fontWeight: 'light',
-          fontSize: 16,
-          mb: 3,
-        }}
+          fontSize: `${theme.typography.pxToRem(16)} !important`,
+          mb: 2,
+        })}
       >
         {role}
       </Typography>
-      <Typography align="center" variant="body2">
+      <Typography
+        align="center"
+        variant="body2"
+        sx={(theme) => ({
+          [theme.breakpoints.down('md')]: {
+            fontSize: theme.typography.pxToRem(12),
+          },
+        })}
+      >
         {testimonial}
       </Typography>
     </Card>
@@ -109,7 +126,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
 
 const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
   const centerPadding = useResponsiveStyleValue({
-    xs: '30px',
+    xs: '60px',
     md: '210px',
     lg: '292px',
   });
@@ -123,6 +140,9 @@ const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
       onEnter={() => onEnter?.('testimonials')}
       sx={(theme) => ({
         '& .testimonialSlide': {
+          [theme.breakpoints.down('md')]: {
+            mx: -2,
+          },
           '&::before, &::after': {
             content: '""',
             position: 'absolute',
@@ -167,7 +187,13 @@ const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
         autoplaySpeed={20000}
       >
         {testimonialsList.map((testimonial, index) => (
-          <Box key={index} px={4}>
+          <Box
+            key={index}
+            sx={(theme) => ({
+              px: 4,
+              [theme.breakpoints.down('md')]: { px: 1 },
+            })}
+          >
             <TestimonialCard key={index} {...testimonial} />
           </Box>
         ))}
