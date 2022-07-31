@@ -2,10 +2,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider, { Settings as SliderSettings } from 'react-slick';
 import { Box, Stack } from '@mui/material';
+import { forwardRef } from 'react';
 
-export default function NextSlider(props: SliderSettings) {
+const NextSlider = forwardRef<Slider, SliderSettings>((props, ref) => {
   return (
     <Slider
+      ref={ref}
       dots={true}
       appendDots={(dots) => (
         <Stack
@@ -46,4 +48,8 @@ export default function NextSlider(props: SliderSettings) {
       {...props}
     />
   );
-}
+});
+
+NextSlider.displayName = 'NextSlider';
+
+export default NextSlider;
