@@ -69,7 +69,8 @@ const SectionNav: FC<SectionNavProps> = ({ activeSection }) => {
               data-target={id}
               sx={(theme) => ({
                 textTransform: 'none',
-                p: 4,
+                py: 4,
+                px: 1,
                 fontSize: theme.typography.pxToRem(18),
                 '&.Mui-selected': {
                   color: 'text.primary',
