@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import { FC } from 'react';
-import { DimensionContextProvider } from './DimensionContext';
-import Footer from './Footer';
-import MessageButton from './MessageButton';
-import Navbar from './Navbar';
+import { DimensionContextProvider } from '../common/DimensionContext';
+import Footer from '../common/Footer';
+import MessageButton from '../common/MessageButton';
+import Navbar from '../common/Navbar';
 
 export interface LayoutProps {
   wrapInsideMain?: boolean;
@@ -15,7 +15,7 @@ export interface LayoutProps {
   hideFooter?: boolean;
 }
 
-const Layout: FC<LayoutProps> = ({
+const FrontLayout: FC<LayoutProps> = ({
   title,
   wrapInsideMain = true,
   children,
@@ -49,4 +49,4 @@ const Layout: FC<LayoutProps> = ({
   );
 };
 
-export default Layout;
+export default FrontLayout;
