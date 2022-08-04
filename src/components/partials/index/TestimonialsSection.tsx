@@ -1,5 +1,4 @@
-import { FC, useState } from 'react';
-import Slider from 'react-slick';
+import { createRef, FC } from 'react';
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 
 import Section from './Section';
@@ -7,7 +6,7 @@ import Card from '../../common/Card';
 import NextSlider from '../../common/NextSlider';
 import useResponsiveStyleValue from '../../../hooks/useResponsiveStyleValue';
 
-export interface ServiceSectionProps {
+export interface TestimonialsSectionProps {
   active?: boolean;
   onEnter?: (value: string) => void;
 }
@@ -124,7 +123,10 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   </Stack>
 );
 
-const TestimonialsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
+const TestimonialsSection: FC<TestimonialsSectionProps> = ({
+  active,
+  onEnter,
+}) => {
   const centerPadding = useResponsiveStyleValue({
     xs: '60px',
     md: '210px',
