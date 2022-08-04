@@ -16,6 +16,7 @@ import NodeJSExpressIcon from '../../icons/NodeJSExpress';
 import SymfonyIcon from '../../icons/Symfony';
 import MySQLIcon from '../../icons/MySQL';
 import MongoDBIcon from '../../icons/MongoDB';
+import { HomeSectionProps } from '../../../@types';
 
 interface BrandListCardProps {
   title: string;
@@ -87,12 +88,7 @@ const BrandListCard: FC<BrandListCardProps> = ({ title, icons }) => (
   </Card>
 );
 
-export interface ServiceSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
-
-const OurWeaponsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => (
+const OurWeaponsSection: FC<HomeSectionProps> = ({ active, onEnter }) => (
   <Section
     id="ourWeapons"
     prefix="Alors"

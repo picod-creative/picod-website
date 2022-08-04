@@ -10,7 +10,11 @@ import {
   ButtonGroup,
 } from '@mui/material';
 import Section from './Section';
-import { SocialMedia, TeamMemberProfile } from '../../../@types';
+import {
+  HomeSectionProps,
+  SocialMedia,
+  TeamMemberProfile,
+} from '../../../@types';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -144,12 +148,7 @@ const TeamMemberProfileCard: FC<TeamMemberProfileCardProps> = ({
   </Stack>
 );
 
-export interface ServiceSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
-
-const OurTeamsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
+const OurTeamsSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
   return (
     <Section
       id="ourTeams"

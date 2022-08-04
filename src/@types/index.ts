@@ -16,6 +16,11 @@ export type Section = {
   title: string;
 };
 
+export type HomeSectionProps = {
+  active?: boolean;
+  onEnter?: (sectionId: string) => void;
+};
+
 export type Service = {
   id: string;
   title: string;

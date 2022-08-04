@@ -1,6 +1,6 @@
 import { Grid, Typography, Theme, useMediaQuery, Box } from '@mui/material';
 import React, { FC } from 'react';
-import { Service } from '../../../@types';
+import { HomeSectionProps, Service } from '../../../@types';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import BuildIcon from '@mui/icons-material/Build';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -31,12 +31,7 @@ const services: Service[] = [
   },
 ];
 
-export interface WhyUsSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
-
-const WhyUsSection: FC<WhyUsSectionProps> = ({ active, onEnter }) => {
+const WhyUsSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
   const isTabletAndUp = useMediaQuery((theme: Theme) =>
     theme.breakpoints.up('md')
   );

@@ -5,11 +5,7 @@ import Section from './Section';
 import Card from '../../common/Card';
 import NextSlider from '../../common/NextSlider';
 import useResponsiveStyleValue from '../../../hooks/useResponsiveStyleValue';
-
-export interface TestimonialsSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
+import { HomeSectionProps } from '../../../@types';
 
 const testimonialsList = [
   {
@@ -123,10 +119,7 @@ const TestimonialCard: FC<TestimonialCardProps> = ({
   </Stack>
 );
 
-const TestimonialsSection: FC<TestimonialsSectionProps> = ({
-  active,
-  onEnter,
-}) => {
+const TestimonialsSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
   const centerPadding = useResponsiveStyleValue({
     xs: '60px',
     md: '210px',

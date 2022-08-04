@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { Grid, Theme, Typography, useMediaQuery } from '@mui/material';
 import Section from './Section';
-import { Service } from '../../../@types';
+import { HomeSectionProps, Service } from '../../../@types';
 import {
   Api as ApiIcon,
   BarChart as BarChartIcon,
@@ -73,12 +73,7 @@ const services: Service[] = [
   },
 ];
 
-export interface ServiceSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
-
-const ServiceSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
+const ServiceSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
   const isXs = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
   const isMobile = useMediaQuery((theme: Theme) =>
     theme.breakpoints.down('md')

@@ -12,6 +12,7 @@ import Section from './Section';
 import SwipeableViews from 'react-swipeable-views';
 import TabPanel from '../../common/TabPanel';
 import ProjectCard from '../../common/ProjectCard';
+import { HomeSectionProps } from '../../../@types';
 
 const tabs = [
   {
@@ -87,12 +88,7 @@ const projects = [
   },
 ];
 
-export interface PortfolioSectionProps {
-  active?: boolean;
-  onEnter?: (value: string) => void;
-}
-
-const PortfolioSection: FC<PortfolioSectionProps> = ({ active, onEnter }) => {
+const PortfolioSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
   const theme = useTheme();
   const mobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
