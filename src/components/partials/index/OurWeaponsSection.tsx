@@ -1,13 +1,5 @@
 import { FC } from 'react';
-import {
-  Grid,
-  Stack,
-  SvgIconProps,
-  Theme,
-  Tooltip,
-  Typography,
-  useMediaQuery,
-} from '@mui/material';
+import { Grid, Stack, SvgIconProps, Tooltip, Typography } from '@mui/material';
 import Section from './Section';
 import Card from '../../common/Card';
 import HTML5Icon from '../../icons/HTML5';
@@ -100,79 +92,73 @@ export interface ServiceSectionProps {
   onEnter?: (value: string) => void;
 }
 
-const OurWeaponsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => {
-  const isDesktop = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down('md')
-  );
-
-  return (
-    <Section
-      id="ourWeapons"
-      prefix="Alors"
-      title="Nos armes"
-      active={active}
-      onEnter={() => onEnter?.('ourWeapons')}
+const OurWeaponsSection: FC<ServiceSectionProps> = ({ active, onEnter }) => (
+  <Section
+    id="ourWeapons"
+    prefix="Alors"
+    title="Nos armes"
+    active={active}
+    onEnter={() => onEnter?.('ourWeapons')}
+  >
+    <Typography
+      sx={(theme) => ({
+        mb: 10,
+        [theme.breakpoints.down('md')]: {
+          mb: 4,
+        },
+      })}
     >
-      <Typography
-        sx={(theme) => ({
-          mb: 10,
-          [theme.breakpoints.down('md')]: {
-            mb: 4,
-          },
-        })}
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
-        ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
-        vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
-        molestie a.
-      </Typography>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas lacinia
+      ullamcorper neque sit pretium amet tortor sit. Duis nibh mauris ac odio
+      vel donec ipsum sed. Nascetur tristique odio aliquet et, amet mattis non
+      molestie a.
+    </Typography>
 
-      <Grid container spacing={{ lg: 5, xs: 2 }}>
-        <Grid item xs={12} md={6}>
-          <BrandListCard
-            title="Langages"
-            icons={[
-              { icon: HTML5Icon, title: 'HTML5' },
-              { icon: CSS3Icon, title: 'CSS3' },
-              { icon: JSIcon, title: 'JavaScript' },
-              { icon: DartIcon, title: 'Dart' },
-            ]}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandListCard
-            title="Logiciels graphiques"
-            icons={[
-              { icon: FigmaIcon, title: 'Figma' },
-              { icon: AdobeXDIcon, title: 'Adobe XD' },
-              { icon: BlenderIcon, title: 'Blender' },
-              { icon: AdobeIcon, title: 'Suite Adobe' },
-            ]}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandListCard
-            title="Framework"
-            icons={[
-              { icon: ReactIcon, title: 'ReactJS' },
-              { icon: FlutterIcon, title: 'Flutter' },
-              { icon: NodeJSExpressIcon, title: 'Node JS' },
-              { icon: SymfonyIcon, title: 'Symfony' },
-            ]}
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandListCard
-            title="Bases de données"
-            icons={[
-              { icon: MySQLIcon, title: 'MySQL' },
-              { icon: MongoDBIcon, title: 'MongoDB' },
-            ]}
-          />
-        </Grid>
+    <Grid container spacing={{ lg: 5, xs: 2 }}>
+      <Grid item xs={12} md={6}>
+        <BrandListCard
+          title="Langages"
+          icons={[
+            { icon: HTML5Icon, title: 'HTML5' },
+            { icon: CSS3Icon, title: 'CSS3' },
+            { icon: JSIcon, title: 'JavaScript' },
+            { icon: DartIcon, title: 'Dart' },
+          ]}
+        />
       </Grid>
-    </Section>
-  );
-};
+      <Grid item xs={12} md={6}>
+        <BrandListCard
+          title="Logiciels graphiques"
+          icons={[
+            { icon: FigmaIcon, title: 'Figma' },
+            { icon: AdobeXDIcon, title: 'Adobe XD' },
+            { icon: BlenderIcon, title: 'Blender' },
+            { icon: AdobeIcon, title: 'Suite Adobe' },
+          ]}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <BrandListCard
+          title="Framework"
+          icons={[
+            { icon: ReactIcon, title: 'ReactJS' },
+            { icon: FlutterIcon, title: 'Flutter' },
+            { icon: NodeJSExpressIcon, title: 'Node JS' },
+            { icon: SymfonyIcon, title: 'Symfony' },
+          ]}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <BrandListCard
+          title="Bases de données"
+          icons={[
+            { icon: MySQLIcon, title: 'MySQL' },
+            { icon: MongoDBIcon, title: 'MongoDB' },
+          ]}
+        />
+      </Grid>
+    </Grid>
+  </Section>
+);
 
 export default OurWeaponsSection;
