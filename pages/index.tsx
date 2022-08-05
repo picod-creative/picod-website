@@ -12,6 +12,7 @@ import OurWeaponsSection from '../src/components/partials/index/OurWeaponsSectio
 import OurTeamSection from '../src/components/partials/index/OurTeamSection';
 import TestimonialsSection from '../src/components/partials/index/TestimonialsSection';
 import { sections } from '../src/constants/config';
+import LetsWorkTogetherSection from '../src/components/partials/index/LetsWorkTogetherSection';
 
 const Home: NextPageWithLayout = () => {
   const [activeSection, setActiveSection] = useState<string>(sections[0].id);
@@ -44,6 +45,7 @@ const Home: NextPageWithLayout = () => {
         active={activeSection === 'testimonials'}
         onEnter={setActiveSection}
       />
+      <LetsWorkTogetherSection />
     </>
   );
 };
