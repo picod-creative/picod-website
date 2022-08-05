@@ -145,7 +145,7 @@ const TestimonialsSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
             bottom: 0,
             width: centerPadding,
             background: `linear-gradient(to right, ${theme.palette.background.default} 10%, ${theme.palette.background.default}99 70%, ${theme.palette.background.default}00 100%)`,
-            zIndex: theme.zIndex.tooltip,
+            zIndex: 10,
             pointerEvents: 'none',
           },
           '&::before': {
