@@ -27,7 +27,7 @@ const LetsWorkTogetherSection: FC = () => (
         py: 7.5,
         px: 9,
         borderRadius: 4,
-        mb: -4,
+        mb: -8,
         position: 'relative',
         zIndex: 1,
         [theme.breakpoints.down('md')]: {
@@ -46,7 +46,7 @@ const LetsWorkTogetherSection: FC = () => (
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          backgroundColor: 'rgba(0, 0, 0, 0.6)',
         },
       })}
     >
