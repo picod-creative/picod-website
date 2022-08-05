@@ -131,6 +131,7 @@ const TeamMemberProfileCard: FC<TeamMemberProfileCardProps> = ({
           <IconButton
             key={key + id}
             component="a"
+            target="_blank"
             href={socialMedia[key as keyof SocialMedia]}
             sx={{
               ':hover': {
