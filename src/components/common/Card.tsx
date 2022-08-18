@@ -100,6 +100,7 @@ const Card: React.FC<CardProps> = ({
         borderRadius,
         textTransform: 'none',
         textAlign: 'left',
+        alignItems: 'flex-start',
         '& .border': {
           display: 'block',
           position: 'absolute',

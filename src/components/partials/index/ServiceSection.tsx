@@ -108,12 +108,12 @@ const ServiceSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
         spacing={isXs ? 2 : isMobile ? 1 : 3.5}
       >
         {services.map(({ id, title, description, icon: Icon }) => (
-          <Grid key={id} item xs={12} sm={6} md={4} lg={3}>
+          <Grid key={id} item xs={6} md={4} lg={3}>
             <Card
               borderRadius={2.5}
               sx={(theme) => ({
-                minHeight: 311,
                 p: 4,
+                height: '100%',
                 '& .icon': {
                   color: theme.palette.secondary.main,
                   mb: 2,
@@ -125,7 +125,6 @@ const ServiceSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
                 [theme.breakpoints.down('md')]: {
                   p: 2,
                   minHeight: 'auto',
-                  height: '100%',
                 },
               })}
             >
