@@ -1,4 +1,4 @@
-import { createRef, FC } from 'react';
+import { FC } from 'react';
 import { Avatar, Box, Stack, Typography } from '@mui/material';
 
 import Section from './Section';
@@ -179,7 +179,7 @@ const TestimonialsSection: FC<HomeSectionProps> = ({ active, onEnter }) => {
         centerPadding={centerPadding}
         slidesToShow={1}
         autoplay
-        autoplaySpeed={20000}
+        autoplaySpeed={3000}
       >
         {testimonialsList.map((testimonial, index) => (
           <Box
