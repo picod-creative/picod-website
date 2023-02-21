@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useState } from 'react';
+import { createContext, FC, ReactNode, useContext, useState } from 'react';
 
 export type DimensionContext = {
   navHeight: number;
@@ -18,7 +18,13 @@ const dimensionContext = createContext<DimensionContext>({
   setHiddenNavbar: () => {},
 });
 
-export const DimensionContextProvider: FC = ({ children }) => {
+export interface DimensionContextProviderProps {
+  children: ReactNode;
+}
+
+export const DimensionContextProvider: FC<DimensionContextProviderProps> = ({
+  children,
+}) => {
   const [navHeight, setNavHeight] = useState<number>(0);
   const [sectionNavHeight, setSectionNavHeight] = useState<number>(0);
   const [hiddenNavbar, setHiddenNavbar] = useState<boolean>(false);

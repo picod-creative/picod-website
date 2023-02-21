@@ -1,11 +1,12 @@
+import { FC, ReactNode } from 'react';
 import Head from 'next/head';
-import { FC } from 'react';
 import { DimensionContextProvider } from '../common/DimensionContext';
 import Footer from '../common/Footer';
 import MessageButton from '../common/MessageButton';
 import Navbar from '../common/Navbar';
 
 export interface LayoutProps {
+  children: ReactNode;
   wrapInsideMain?: boolean;
   mainClassName?: string;
   mainStyle?: React.CSSProperties;

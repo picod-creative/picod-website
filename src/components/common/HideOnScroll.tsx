@@ -2,7 +2,7 @@ import { FC, ReactElement, useEffect } from 'react';
 import { Slide, useScrollTrigger } from '@mui/material';
 
 export interface HideOnScrollProps {
-  children: ReactElement;
+  children: ReactElement<any, any>;
   onHide?: () => void;
   onShow?: () => void;
 }
