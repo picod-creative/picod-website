@@ -80,7 +80,7 @@ const Navbar: FC = () => {
             },
           }}
         >
-          <Link href="/" passHref>
+          <Link href="/" passHref legacyBehavior>
             <MuiLink sx={{ display: 'flex' }}>
               <PicodIcon variant="icon" />
             </MuiLink>
@@ -95,12 +95,12 @@ const Navbar: FC = () => {
           </Hidden>
           <Hidden mdDown implementation="css">
             <Stack direction="row" alignItems="center" spacing={4}>
-              <Link href="/about" passHref>
+              <Link href="/about" passHref legacyBehavior>
                 <MuiLink underline="none" color="inherit">
                   A propos
                 </MuiLink>
               </Link>
-              <Link href="/contact" passHref>
+              <Link href="/contact" passHref legacyBehavior>
                 <Button
                   variant="contained"
                   color="inherit"
@@ -149,7 +149,7 @@ const Navbar: FC = () => {
           </IconButton>
           <Stack direction="column" spacing={4} sx={{ height: '100%', mt: 6 }}>
             {sections.map(({ id, title }) => (
-              <Link key={id} href={`#${id}`} passHref>
+              <Link key={id} href={`#${id}`} passHref legacyBehavior>
                 <MuiLink
                   onClick={() => setOpenDrawer(false)}
                   underline="none"
@@ -213,7 +213,7 @@ const Navbar: FC = () => {
                 </IconButton>
               ))}
             </Stack>
-            <Link href="/about" passHref>
+            <Link href="/about" passHref legacyBehavior>
               <Button
                 variant="contained"
                 color="secondary"
@@ -232,7 +232,7 @@ const Navbar: FC = () => {
                 A propos
               </Button>
             </Link>
-            <Link href="/contact" passHref>
+            <Link href="/contact" passHref legacyBehavior>
               <Button
                 variant="contained"
                 color="inherit"

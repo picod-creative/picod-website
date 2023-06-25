@@ -76,7 +76,7 @@ const Footer: FC = () => {
             },
           })}
         >
-          <Link href="/">
+          <Link href="/" passHref legacyBehavior>
             <a>
               <PicodIcon
                 variant="logo-monochrome"

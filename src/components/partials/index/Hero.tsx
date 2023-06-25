@@ -475,7 +475,7 @@ const Hero: FC = () => {
           caroussel blabla
         </Typography>
         <Hidden mdDown>
-          <Link href="/contact" passHref>
+          <Link href="/contact" passHref legacyBehavior>
             <Button
               variant="contained"
               component="a"
