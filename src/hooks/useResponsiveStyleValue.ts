@@ -11,7 +11,9 @@ type UseResponsiveStyleValue = <T>(
 /**
  * Hook for getting the responsive style value matching the current window size.
  */
-const useResponsiveStyleValue: UseResponsiveStyleValue = (value) => {
+const useResponsiveStyleValue: UseResponsiveStyleValue = <T>(
+  value: ResponsiveStyleValue<T>
+) => {
   const {
     breakpoints: { values: breakpointValues },
   } = useTheme();
@@ -22,7 +24,7 @@ const useResponsiveStyleValue: UseResponsiveStyleValue = (value) => {
   }
 
   if (typeof value === 'object') {
-    const keys: Breakpoint[] = Object.keys(value).sort(
+    const keys: Breakpoint[] = Object.keys(value as Record<Breakpoint, T>).sort(
       (a, b) =>
         sortedBreakpoints.indexOf(b as Breakpoint) -
         sortedBreakpoints.indexOf(a as Breakpoint)
