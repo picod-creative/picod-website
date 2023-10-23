@@ -8,7 +8,6 @@ const Message: FC<SvgIconProps> = (props) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     sx={(theme) => ({
-      width: 'fit-content',
       fontSize: 44,
       filter: 'drop-shadow(-9px -9px 16px rgba(231, 231, 231, 0.10))',
       ...(typeof props.sx === 'function' ? (props.sx(theme) as any) : props.sx),
